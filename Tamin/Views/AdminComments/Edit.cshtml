@@ -1,0 +1,134 @@
+﻿    @model Tamin.Models.Comment
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="panel">
+    <header class="panel-heading">ویرایش
+	</header>
+    <div class="panel-body">
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+	@Html.ValidationSummary(true)
+    <fieldset>  
+        @Html.HiddenFor(model => model.Comment_ID)
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.User_ID, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.User_ID)
+                @Html.ValidationMessageFor(model => model.User_ID)
+            </div>
+        </div>*@
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.PostID, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PostID)
+                @Html.ValidationMessageFor(model => model.PostID)
+            </div>
+        </div>*@
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.Parent_ID, "Parent_ID", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Parent_ID", String.Empty)
+                @Html.ValidationMessageFor(model => model.Parent_ID)
+            </div>
+        </div>*@
+        
+        @if (Model.PostID != null)
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.PostID, "عنوان صفحه", new {@class = "control-label col-md-2"})
+                <div class="col-md-10">
+                    @Html.DropDownList("PostID", "--عنوان صفحه را انتخاب کنید--")
+                    @Html.ValidationMessageFor(model => model.PostID)
+                </div>
+            </div>
+
+        }
+
+        @if (Model.Parent_ID != null)
+        {
+            <div class="form-group">
+                @Html.LabelFor(model => model.Parent_ID, "والد نظر", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("Parent_ID", "--کامنت والد را انتخاب کنید--")
+                    @Html.ValidationMessageFor(model => model.Parent_ID)
+                </div>
+            </div>
+        }
+        <div class="form-group">
+            @Html.LabelFor(model => model.Comment_Date, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Comment_Date)
+                @Html.ValidationMessageFor(model => model.Comment_Date)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CommentIsActive, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.CommentIsActive)
+                @Html.ValidationMessageFor(model => model.CommentIsActive)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Author, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Author)
+                @Html.ValidationMessageFor(model => model.Author)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Comment_title, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Comment_title)
+                @Html.ValidationMessageFor(model => model.Comment_title)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Author_Email, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Author_Email)
+                @Html.ValidationMessageFor(model => model.Author_Email)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.CommentContent, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.CommentContent)
+                @Html.ValidationMessageFor(model => model.CommentContent)
+            </div>
+        </div>
+
+
+
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.UserLogsData, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserLogsData)
+                @Html.ValidationMessageFor(model => model.UserLogsData)
+            </div>
+        </div>*@
+
+        <div id="buttons">            
+			<div class="col-md-2">
+            </div>
+            <div class="col-md-10">
+			<input type="submit" class="btn btn-primary"  value="ثبت" />
+            @Html.ActionLink("بازگشت به فهرست", "Index")						
+			</div>
+        </div>
+    </fieldset>
+
+}
+</div>
+</section>

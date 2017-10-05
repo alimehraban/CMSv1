@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Tamin.Models.Post>
+
+@foreach (var item in Model)
+{
+    <div class="single-blog-post line-news">
+        <div class="art-content-layout">
+            <div class="art-content-layout-row">
+                <div class="art-layout-cell layout-item-0" style="width: 100%">
+                    <h4 dir="rtl" style="text-align: justify">
+                        
+                        <a href="@Url.Action("PostDetails", "Home", new { id = item.PostID }, null)">@item.PostTitle</a>
+                    </h4><hr />
+                    <div class="post-meta">
+                        <ul>
+                            <li>
+                                <i class="fa fa-clock-o"></i>
+                                @item.PostDate.ToShortTimeString()
+                            </li>
+                            <li>
+                                <i class="fa fa-calendar"></i>
+                                @item.PostDate.ToString("yyyy/MM/dd")
+                            </li>
+                            
+                            @*<li>
+                                <i class="fa fa-eye"></i>@item.PageCounter
+                            </li>*@
+
+                        </ul>
+                    </div>
+                    @if (item.ImageUrl != null)
+                    {
+                        <div class="ItemLide" dir="rtl" style="text-align: justify">
+                            <img alt="" class="show-image3 img-responsive" src="@Url.Content(item.ImageUrl)" alt="@item.PostTitle"/>
+                        </div>
+                    }
+                    <div class="ItemLide" dir="rtl" style="text-align: justify">
+                        @Html.Raw(item.Summary)
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <a class="btn btn-primary" href="@Url.Action("PostDetails", "Home", new { id = item.PostID }, null)">ادامه مطلب</a>
+    </div>
+    <br />
+}

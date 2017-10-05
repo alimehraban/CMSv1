@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/AdminContent/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="k-rtl">
+        <section id="container">
+            <!--header start-->
+            <header class="header fixed-top clearfix">
+                <!--logo start-->
+                <div class="brand">
+                    <a href="#" class="logo">
+                        بخش مدیریت سایت
+                    </a>
+                    <div class="sidebar-toggle-box">
+                        <div id="MenuRight" class="fa fa-bars"></div>
+                    </div>
+                </div>
+                <!--logo end-->
+
+
+            </header>
+            <!--header end-->
+            <aside>
+                <div id="sidebar" class="nav-collapse">
+                    <!-- sidebar menu start-->
+                    <div class="leftside-navigation">
+                        <ul class="sidebar-menu" id="nav-accordion">
+                            <li>
+                                <a class="active" href="@Url.Action("Index","AdminHome")">
+                                    <i class="fa fa-dashboard"></i>
+                                    <span>داشبورد</span>
+                                </a>
+                            </li>
+                            <li class="sub-menu">
+                                <a href="javascript:;">
+                                    <i class="fa fa-laptop"></i>
+                                    <span>بخش مدیریت</span>
+                                </a>
+                                <ul class="sub">
+                                    <li><a href="@Url.Action("Index","AdminUsers")"><i class="fa fa-users"></i>
+                                        <span>مدیریت کاربری</span></a></li>
+                                    <li><a href="@Url.Action("Index","AdminRoles")"><i class="fa fa-lock"></i>
+                                        <span>مدیریت نقش ها</span></a></li>
+                                    <li><a href="@Url.Action("Index","AdminComments")"><i class="fa fa-comment"></i>
+                                        <span>کامنت ها</span></a></li>
+                                    <li><a href="@Url.Action("Index","AdminPostGroups")"><i class="fa fa-tag"></i>
+                                        <span>مجموعه ها</span></a></li>
+                                    <li><a href="@Url.Action("Index","AdminPosts")"><i class="fa fa-file-text"></i>
+                                        <span>مدیریت مطالب</span></a></li>
+                                    <li><a href="@Url.Action("Index","AdminContacts")"><i class="fa fa-phone"></i>
+                                        <span>تماس با ما</span></a></li>
+
+                                    
+                                    
+                                </ul>
+                            </li>
+
+
+
+                        </ul>
+                    </div>
+                    <!-- sidebar menu end-->
+                </div>
+            </aside>
+            <section id="main-content">
+                <section class="wrapper">
+                    <div class="row">
+                        <div class="col-md-12">
+                            @RenderBody()
+                        </div>
+                    </div>
+                </section>
+
+            </section>
+        </section>
+    </div>
+    @Scripts.Render("~/bundles/tamin")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script>
+        $(document).ready(function () {
+            EditableTable.init();
+            $("form").addClass("form-horizontal").attr("role", "form");
+            $("#buttons * *").addClass("btn btn-primary");
+            $('input[type="text"],input[type="datetime"],input[type="password"],textarea,select').addClass("form-control");
+        });
+    </script>
+</body>
+</html>

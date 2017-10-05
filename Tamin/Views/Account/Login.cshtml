@@ -1,0 +1,56 @@
+﻿@using CaptchaMvc.HtmlHelpers
+@using CaptchaMvc.Models
+@using Tamin.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "ورود به سایت";
+}
+
+<section id="form">
+    <!--form-->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-1">
+                <div class="login-form">
+                    <!--login form-->
+                    <h2>ورود به حساب کاربری</h2>
+                    <hr />
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { role = "form" }))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                        @Html.TextBoxFor(m => m.Email, new { @placeholder = "نام کاربری" })
+                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+
+
+                        @Html.PasswordFor(m => m.Password, new { @placeholder = "کلمه عبور" })
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+
+                        <div>
+                            <span>
+                                @Html.CheckBoxFor(m => m.RememberMe)
+                                @Html.Label("مرابخاطر بسپار")
+                            </span>
+                        </div>
+                        <div class="col-sm-12">
+                        <p id="captcha">
+                            @Html.Captcha("ایجاد یک کد دیگر", "لطفا کد تصویر را وارد نمایید", 4)
+                        </p>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button type="submit" class="btn btn-primary">ورود</button>
+                            </div>
+
+                        </div>
+                        <br />
+
+                    }
+                </div><!--/login form-->
+            </div>
+        </div>
+    </div>
+</section>
+

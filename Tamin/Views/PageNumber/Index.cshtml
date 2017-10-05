@@ -1,0 +1,19 @@
+﻿@model IList<Tamin.Models.Post>
+@{
+    ViewBag.Title = "Index";
+    var loadInfoUrl = Url.Action(actionName: "Index", controllerName: "PageNumber");
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>
+    اسکرول نامحدود
+</h2>
+@{ Html.RenderPartial("_ItemsList", Model); }
+<div id="MoreInfoDiv">
+</div>
+<div align="center" style="margin-bottom: 9px;">
+    <span id="moreInfoButton" style="width: 90%;" class="btn btn-info">بیشتر</span>
+</div>
+<div id="ProgressDiv" align="center" style="display: none">
+    <br />
+    <img src="@Url.Content("~/Content/images/loadingAnimation.gif")" alt="loading..." />
+</div>

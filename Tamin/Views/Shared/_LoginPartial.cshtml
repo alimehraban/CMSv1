@@ -1,0 +1,29 @@
+﻿@using CaptchaMvc.HtmlHelpers
+@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <ul class="nav navbar-nav navbar-right">
+            <li @*class="btn btn-send"*@ style="background: #00A8B3; border-radius: 4px;">
+                @Html.ActionLink("سلام " + User.Identity.GetUserName() + "!", "Index", "Home", routeValues: null, htmlAttributes: new { title = "" })
+            </li>
+        </ul>
+        <br /><br /><br />
+        <ul>
+            <li style="background: #00A8B3; border-radius: 4px; padding: 15px; margin-right: -30px; text-align: center;">
+                <a href="javascript:document.getElementById('logoutForm').submit()"><i class=""></i>خروج</a>
+            </li>
+        </ul>
+    }
+}
+else
+{
+    <li>@Html.ActionLink("ثبت نام", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+    <span id="captcha">
+        @Html.Captcha("ایجاد یک کد دیگر", "لطفا کد تصویر را وارد نمایید", 4)
+    </span>
+    <li>@Html.ActionLink("ورود", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+}

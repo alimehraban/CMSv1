@@ -1,0 +1,92 @@
+﻿
+@model IEnumerable<Tamin.Models.PostGroup>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<section class="panel">
+    <header class="panel-heading">
+        فهرست گروه های کالا ها
+        <span class="tools pull-left">
+            <a class="fa fa-chevron-down" href="javascript:;"></a>
+        </span>
+    </header>
+
+
+    <div class="panel-body">
+        <div class="adv-table editable-table">
+            <div class="clearfix">
+                <div class="btn-group">
+                    @Html.ActionLink("ایجاد", "Create", null, new { @class = "btn btn-success" })
+                </div>
+            </div>
+        </div>
+        <div class="space15"></div>
+        <table class="table editable-table table-hover table-bordered" id="editable-sample">
+
+            <thead>
+                <tr>
+
+                    <th>
+                        @Html.DisplayName("والد گروه خبر")
+
+                    </th>
+                    <th>
+                        @Html.DisplayName("عنوان گروه خبر")
+                    </th>
+
+                    <th>
+                        @Html.DisplayName("تصویر خبر")
+                    </th>
+
+                    <th>@Html.DisplayName("دستورات")</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.Count() == 0)
+            {
+                    <tr><td colspan="8" class="text-center">هیچ داده ای جهت نمایش وجود ندارد</td></tr>
+                }
+                else
+                {
+                    foreach (var item in Model)
+                    {
+                        <tr class="">
+
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PostGroupTitle)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PostGroupTitle)
+                            </td>
+                            <td>
+
+                                @if (!String.IsNullOrEmpty(@item.ImageUrl))
+                                {
+                                    <img style="border-radius: 5px;" width="50" height="50" src="@Url.Content(@item.ImageUrl)" />
+                                }
+
+                            </td>
+                            <td>
+                                @*@using (Html.BeginForm("Delete", "AdminUsers", new { id = item.PostID }))*@
+
+
+                                @Html.ActionLink("ویرایش", "Edit", new { id = item.PostGroupID }, new { @class = "btn btn-primary btn-xs" })
+
+                                @Html.ActionLink("حذف", "Delete", new { id = item.PostGroupID }, new { @class = "btn btn-danger btn-xs" })
+
+
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+
+</section>

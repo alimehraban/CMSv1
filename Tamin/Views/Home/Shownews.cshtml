@@ -1,0 +1,79 @@
+﻿
+@using Tamin.Models
+
+@{
+var db = new ApplicationDbContext();
+
+}
+
+@*<div class="site-slider">
+    <link href="~/Content/style - slider.css" rel="stylesheet" />
+
+    <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+            <li data-target="#carousel-example-generic" data-slide-to="4"></li>
+        </ol>
+
+        <!-- Wrapper for slides -->
+
+
+        @foreach (var item in db.Posts.Where(x => x.PostIsActive && !x.Is_delete && x.Startdate <= DateTime.Now || x.Startdate == null && x.Enddate >= DateTime.Now || x.Enddate == null)
+                    .OrderByDescending(x => x.PostID))
+
+        {
+
+            <div class="carousel-inner" role="listbox">
+            <div class="item active">*@
+                @*<img src="~/Media/ImgAmozesh/02.jpg" alt="slider image 1">
+               @if (item.ImageUrl != null)
+                {
+                    <img alt="" class="show-image2 img-responsive" src="@Url.Content(item.ImageUrl)" alt="@item.PostTitle"/>
+                }
+
+                <div class="carousel-caption">
+                    @*<h3>عکس اول</h3>*@
+                    @*<h3>@Html.Raw(item.PostTitle)</h3>
+
+                    @*<p>متن خبر متن خبر متن خبر متن خبر متن خبر متن خبر متن خبر متن خبر </p>*@
+                    @*<p>@Html.Raw(item.Summary)</p>
+                </div>
+            </div>
+        </div>*@*@*@
+
+        @*<a data-toggle="collapse" data-parent="#accordian" href="#@item.PostID">
+            <ul>
+                <li>
+                    <a style="color: #337ab7;" href="@Url.Action("PostDetails", "Home", new {id = item.PostID}, null)">@item.PostTitle</a>
+                </li>
+            </ul>
+        </a>*@
+
+
+
+
+        @*}
+
+
+
+    </div>
+
+    ...
+</div>*@
+
+<!-- Controls -->
+@*<a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+</a>
+<a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+</a>*@
+@*</div>
+
+</div>*@

@@ -1,0 +1,32 @@
+﻿@model IEnumerable<string>
+@{
+    ViewBag.Title = "Error";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="alert alert-danger">
+    @switch (Model.Count())
+    {
+        case 0:
+            @: خطایی رخ داده است دوباره تلاش کنید
+        break;
+
+        case 1:
+            @Model.First();
+            break;
+
+        default:
+            @: در زمان پردازش عملیات ها سیستم با خطاهای زیر مواجه شد :
+            <ul>
+                @foreach (string error in Model)
+                {
+                    <li>@error</li>
+                }
+            </ul>
+            break;
+    }
+</div>
+@Html.ActionLink("تایید", "Index", null, new { @class = "btn btn-default" })
+
+
+

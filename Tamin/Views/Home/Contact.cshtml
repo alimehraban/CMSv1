@@ -1,0 +1,64 @@
+﻿@using CaptchaMvc.HtmlHelpers
+@using CaptchaMvc.Models
+
+@model Tamin.Models.Contact
+
+<div class="category-tab shop-details-tab">
+
+<br/>
+    <div class="tab-content">
+        <div class="tab-pane fade active in" id="reviews">
+            <div class="col-sm-12">
+
+                <p><b>محل نوشتن دیدگاه شما</b></p>
+                @using (Html.BeginForm("Create", "AdminContacts", FormMethod.Post, new { @id = "form_UploadFile", @enctype = "multipart/form-data" }))                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    @Html.Hidden("postId")
+
+                    <span>
+                        @Html.TextBoxFor(model => model.Name, new { @placeholder = "نام ", @maxlength = "100" })
+                        @Html.ValidationMessageFor(model => model.Name)
+                    </span>
+                    <br /><br />
+                    <span>
+                        @Html.TextBoxFor(model => model.Family, new { @placeholder = "نام خانوادگی", @maxlength = "100" })
+                        @Html.ValidationMessageFor(model => model.Family)
+                    </span>
+                    <br /><br />
+                    <span>
+                        @Html.TextBoxFor(model => model.Tell, new { @placeholder = "شماره تماس", @maxlength = "100" })
+                        @Html.ValidationMessageFor(model => model.Tell)
+                    </span><br /><br />
+                    <span>
+                        @Html.TextBoxFor(model => model.Email, new { @placeholder = "پست الکترونیک", @maxlength = "100" })
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </span><br /><br />
+                    <span>
+                        @Html.TextBoxFor(model => model.Subject, new { @placeholder = "موضوع", @maxlength = "100" })
+                        @Html.ValidationMessageFor(model => model.Subject)
+                    </span><br /><br />
+
+
+                    @Html.TextAreaFor(model => model.TestContact, new { @placeholder = "متن ..." })
+                    @Html.ValidationMessageFor(model => model.TestContact)
+
+                    <span id="captcha">
+                        @Html.Captcha("ایجاد یک کد دیگر", "لطفا کد تصویر را وارد نمایید", 4)
+                    </span>
+
+                <br/>
+                    <div id="buttons">
+                        <div class="col-md-10">
+                            <input type="submit" class="btn btn-primary" value="ثبت" />
+                        </div>
+                    </div>
+                }
+
+
+            </div>
+        </div>
+
+    </div>
+</div>
+

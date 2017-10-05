@@ -1,0 +1,95 @@
+﻿
+@model IEnumerable<Tamin.Models.Comment>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<section class="panel">
+    <header class="panel-heading">
+        فهرست
+        <span class="tools pull-left">
+            <a class="fa fa-chevron-down" href="javascript:;"></a>
+        </span>
+    </header>
+    <div class="panel-body">
+
+        <div class="space15"></div>
+        <table class="table editable-table table-hover table-bordered" id="editable-sample">
+            <thead>
+            <tr>
+
+                <th>
+                    @Html.DisplayName("نام فرستنده")                
+
+                </th>
+                <th>
+                    @Html.DisplayName("تاریخ ارسال")                
+                </th>
+                <th>
+                    @Html.DisplayName("وضعیت نمایش")
+                </th>                
+                <th>
+                    @Html.DisplayName("عنوان نظر")
+                </th>
+                <th>
+                    @Html.DisplayName("آدرس ایمیل")
+                </th>
+                <th>@Html.DisplayName("دستورات")</th>
+            </tr>
+            </thead>
+            <tbody>
+            @if (Model.Count() == 0)
+            {
+                <tr><td colspan="8" class="text-center">هیچ داده ای جهت نمایش وجود ندارد</td></tr>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <tr class="">
+
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Author)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Comment_Date)
+                        </td>
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CommentIsActive)
+                            @if (item.CommentIsActive == true)
+                            {
+                                @:تایید
+                            }
+                            else
+                            {
+                                @:انتظار
+                            }
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Comment_title)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Author_Email)
+                        </td>
+                        <td>
+
+
+                            @Html.ActionLink("مشاهده", "Edit", new { id = item.Comment_ID }, new { @class = "btn btn-primary btn-xs" })
+
+                            @Html.ActionLink("حذف", "Delete", new { id = item.Comment_ID }, new { @class = "btn btn-danger btn-xs" })
+
+                            
+                        </td>
+                    </tr>
+                }
+            }
+                
+            </tbody>
+        </table>
+    </div>
+</section>

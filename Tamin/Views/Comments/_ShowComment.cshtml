@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Tamin.Models.Comment>
+
+<div class="response-area">
+    <div class="form-text">
+        <h2>تعداد نظرات : @ViewBag.count</h2> 
+    </div>
+
+
+    @DisplayComment(Model.Where(x => x.Parent_ID == null))
+    @helper DisplayComment(IEnumerable<Tamin.Models.Comment> comments)
+    {
+        <ul class="media-list">
+            @foreach (var comment in comments)
+            {
+                <li class="media">
+
+                    <a class="pull-right" href="#">
+                        <img class="media-object" src="@Url.Content("~/Uploads/usericon.jpg")" alt="@comment.Author">
+                    </a>
+                    <div class="media-body">
+                        <ul class="sinlge-post-meta">
+                            <li><i class="fa fa-user"></i>@comment.Author</li>
+                            <li><i class="fa fa-clock-o"></i> @comment.Comment_Date.ToShortTimeString()</li>
+                            <li><i class="fa fa-calendar"></i>@comment.Comment_Date.ToString("yyyy/MM/dd")</li>
+
+                        </ul>
+                        <ul class="sinlge-post-meta" style="padding: 20px" ;>
+
+
+                            <li>@comment.CommentContent</li>
+                        </ul>
+                    </div>
+                </li>
+                var childComment = Model.Where(x => x.Parent_ID == comment.Comment_ID).ToList();
+                if (childComment.Count > 0)
+                {
+
+                    <li class="second-media">
+                        @DisplayComment(childComment)
+                    </li>
+                }
+            }
+        </ul>
+    }
+
+</div><!--/Response-area-->

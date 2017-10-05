@@ -1,0 +1,106 @@
+﻿@model Tamin.Models.Post
+@using System.Data.SqlClient
+@using Tamin.Models
+
+@{
+    ViewBag.Title = "جزئیات خبر";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="col-sm-12">
+    <div class="blog-post-area">
+        <div class="single-blog-post">
+            <div class="post-meta">
+                <ul>
+                    <li><i class="fa fa-clock-o"></i>@Model.PostDate.ToShortTimeString()</li>
+                    <li><i class="fa fa-calendar"></i>@Model.PostDate.ToString("yyyy/MM/dd")</li>
+                    <li><i class="fa fa-eye"></i>@Model.PageCounter</li>
+
+                </ul>
+            </div>
+            <h3>@Model.PostTitle</h3>
+            <hr />
+            <div class="form-title" dir="rtl" style="text-align: justify">
+                <p>
+                    @Html.Raw(Model.Summary)
+                </p>
+            </div>
+            @if (Model.ImageUrl != null)
+            {
+                <div class="col-sm-12">
+                    <div class="hover01 column">
+                        <div>
+                            <figure><img class="show-image1 img-responsive image-radius" src="@Url.Content(Model.ImageUrl)" alt="@Model.PostTitle"/> </figure>
+
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="form-text">
+                <p>
+                    @Html.Raw(Model.PostText)
+                </p>
+            </div>
+            <div class="form-text">
+                <p><br/></p>
+                <p><br/></p>
+            </div>
+            
+
+        </div>
+    </div>
+    @if (Model.Comment_status)
+    {
+
+
+        <br/>
+        <hr/>
+        <div id="show-comment">
+            @{
+                Html.RenderAction("ShowComment", "Comments", new {id = Model.PostID});
+            }
+        </div>
+        <div id="form-comment">
+            @{
+                Html.RenderAction("InsertComment", "Comments", new {id = Model.PostID});
+            }
+
+        </div>
+    }
+</div>
+
+@if (!String.IsNullOrEmpty(ViewBag.info))
+{
+    <div id="info" style="position: fixed; bottom: 0; right: 0; margin-right: 1%;">
+
+        <div class="alert @ViewBag.color alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong> @ViewBag.info</strong>
+        </div>
+
+    </div>
+
+}
+
+<script>
+    $(function () {
+        $("info").fadeOut(15000);
+    });
+</script>
+<script>
+
+
+    $(document).ready(function () {
+        $("[rel='tooltip']").tooltip();
+
+        $('.thumbnail1').hover(
+            function () {
+                $(this).find('.caption1').slideDown(10); //.fadeIn(250)
+            },
+            function () {
+                $(this).find('.caption1').slideUp(10); //.fadeOut(205)
+            }
+        );
+    });
+</script>

@@ -1,0 +1,64 @@
+﻿@model Tamin.Models.Contact
+
+@{
+    ViewBag.Title = "حذف ";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="panel panel-danger">
+    <header class="panel-heading">حذف
+	</header>
+    <div class="panel-body">
+
+<h4>آیا مطمئن هستید که این مورد حذف شود؟</h4>
+<fieldset>    
+ <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+ <div class="display-label">
+         @Html.DisplayNameFor(model => model.Family)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Family)
+    </div>
+ @*<div class="display-label">
+         @Html.DisplayNameFor(model => model.Tell)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Tell)
+    </div>*@
+ @*<div class="display-label">
+         @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>*@
+ <div class="display-label">
+         @Html.DisplayNameFor(model => model.Subject)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Subject)
+    </div>
+ @*<div class="display-label">
+         @Html.DisplayNameFor(model => model.TestContact)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.TestContact)
+    </div>*@
+   </fieldset>
+@using (Html.BeginForm()) {
+@Html.AntiForgeryToken()
+		<div id="buttons">            
+			<div class="col-lg-2">
+            </div>
+            <div class="col-lg-10">
+			<input type="submit" class="btn btn-primary"  value="حذف" />
+            @Html.ActionLink("بازگشت به فهرست", "Index")						
+			</div>
+        </div>
+}
+</div>
+</section>

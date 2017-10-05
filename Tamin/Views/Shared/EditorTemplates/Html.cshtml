@@ -1,0 +1,10 @@
+﻿@Html.TextArea("", ViewData.TemplateInfo.FormattedModelValue.ToString(), new { @class = "ckeditor" })
+
+<script src="~/ckeditor/ckeditor.js"></script>
+<script src="~/ckeditor/adapters/jquery.js"></script>
+<script>
+    $(function () {
+        $('#Content').ckeditor();
+
+    });
+</script>

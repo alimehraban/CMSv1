@@ -1,0 +1,39 @@
+﻿@model Tamin.Models.Post
+
+@{
+    ViewBag.Title = "جزئیات خبر";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-sm-12">
+    <div class="blog-post-area">
+        <h2 class="title text-center">جزئیات خبر</h2>
+        <div class="single-blog-post">
+            
+            <h3 class="">@Model.PostTitle</h3>
+            <div class="post-meta">
+                <ul>
+                    <li><i class="fa fa-user"></i> @Model.ApplicationUser.Fullname</li>
+                    <li><i class="fa fa-clock-o"></i>@Model.PostDate.ToShortTimeString()</li>
+                    <li><i class="fa fa-calendar"></i>@Model.PostDate.ToString("yyyy/MM/dd")</li>
+                </ul>
+
+            </div>
+            <div class="ItemLide" dir="rtl" style="text-align: justify">
+                <p>
+                    @Html.Raw(Model.Summary)
+                </p>
+            </div>
+            <div class="col-sm-12">
+                
+                <div class="view-product">
+                    <img class="show-image1 img-responsive" src="@Url.Content(Model.ImageUrl)" alt="@Model.PostTitle"/>
+                </div>
+            </div>
+            <p>
+                @Html.Raw(Model.PostText)
+            </p>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+﻿@model Tamin.Models.PostGroup
+
+@{
+    ViewBag.Title = "حذف ";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="panel panel-danger">
+    <header class="panel-heading">
+        حذف گروه کالا
+    </header>
+    <div class="panel-body">
+
+        <h4>آیا مطمئن هستید که این مورد حذف شود؟</h4>
+        <fieldset>
+            @if (Model.ParentId != null)
+            {
+                <div class="display-label">
+                    @Html.Label("والد گروه محصول")
+                </div>
+                <div class="display-field">
+                    @Html.DisplayFor(model => model.Parent.PostGroupTitle)
+                </div>
+            }
+            <div class="display-label">
+                @Html.DisplayNameFor(model => model.PostGroupTitle)
+            </div>
+            <div class="display-field">
+                @Html.DisplayFor(model => model.PostGroupTitle)
+            </div>
+            @if (Model.ImageUrl != null)
+            {
+                <div class="display-label">
+                    @Html.DisplayNameFor(model => model.ImageUrl)
+                </div>
+                <div class="display-field">
+                    <img alt="@Model.PostGroupTitle" src="@Url.Content(Model.ImageUrl)" height="50" width="50">
+                </div>
+            }
+
+        </fieldset>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            <div id="buttons">
+                <div class="col-lg-2">
+                </div>
+                <div class="col-lg-10">
+                    <input type="submit" class="btn btn-primary" value="حذف" />
+                    @Html.ActionLink("بازگشت به فهرست", "Index")
+                </div>
+            </div>
+        }
+    </div>
+</section>

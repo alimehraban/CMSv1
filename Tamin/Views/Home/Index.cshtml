@@ -1,0 +1,80 @@
+﻿@model IEnumerable<Tamin.Models.Post>
+@{
+    ViewBag.Title = "لیست خبر ها";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var loadInfoUrl = Url.Action(actionName: "PagedIndex", controllerName: "Home");
+}
+
+<div class="col-sm-12">
+    <div class="blog-post-area">
+
+        
+        
+        
+        <div class="single-blog-post line-news">
+        <div class="art-content-layout">
+            <div class="art-content-layout-row">
+                <div class="art-layout-cell layout-item-0" style="width: 100%">
+                    <h4 dir="rtl" style="text-align: justify">
+                        <p style="margin-top: 10px;" dir="rtl"><a href="~/help.pdf" target="_blank">                        راهنمای استفاده از خدمات الکترونیک
+                        </a></p>
+
+                    </h4><hr />
+                    <div class="ItemLide" dir="rtl" style="text-align: justify">
+                        <p style="margin-top: 10px;" dir="rtl">فایل کتاب مصور آموزش استفاده از خدمات الکترونیک سازمان تامین اجتماعی شعبه شهر صنعتی رشت </p>
+                    
+                        <p style="margin-top: 10px;" dir="rtl"><a href="~/help.pdf" target="_blank">لینک دانلود</a></p>
+                        <p style="margin-top: 10px;" dir="rtl">فایل چندرسانه ای آموزش استفاده از خدمات الکترونیک سازمان تامین اجتماعی شعبه شهر صنعتی رشت </p>
+                        <p style="margin-top: 10px;" dir="rtl"><a href="http://www.fmdesign.ir/intro2.mp4" target="_blank">لینک دانلود</a></p>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        </div>
+
+        
+
+
+        
+        @{ Html.RenderPartial("_ItemList", Model); }
+        <div id="MoreInfoDiv">
+        </div>
+        <div align="center" style="margin-bottom: 9px;">
+            <br/>
+            <span id="moreInfoButton" style="width: 150px;" class="btn btn-info">بیشتر</span>
+        </div>
+        <div id="ProgressDiv" align="center" style="display: none">
+            <br/>
+            <img src="@Url.Content("~/Content/loadingAnimation.gif")" alt="loading..."/>
+        </div>
+        @section JavaScript
+        {
+            <script type="text/javascript">
+                $(document).ready(function() {
+                    $("#moreInfoButton").InfiniteScroll({
+                        moreInfoDiv: '#MoreInfoDiv',
+                        progressDiv: '#ProgressDiv',
+                        loadInfoUrl: '@loadInfoUrl',
+                        loginUrl: '/login',
+                        errorHandler: function() {
+                            alert('خطایی در بارگذاری مطالب رخ داده است');
+                        },
+                        completeHandler: function() {
+
+                        },
+                        noMoreInfoHandler: function() {
+                            alert('مطالب بیشتری یافت نشد');
+                        }
+                    });
+                });
+
+            </script>
+        }
+
+
+
+
+    </div>
+</div>

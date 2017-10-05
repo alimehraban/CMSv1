@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Tamin.Models.Post>
+@using Tamin.Models
+
+@{
+    ViewBag.Title = "لیست خبر ها";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-sm-9">
+    <div class="blog-post-area">
+        <h2 class="title text-center">لیست اخرین خبر ها</h2>
+        @foreach (var item in Model)
+        {
+            <div class="single-blog-post" style="border:1px solid #F7F7F0;padding:8px;">
+                <h3>@item.PostTitle</h3>
+                <div class="post-meta">
+                    <ul>
+                        <li><i class="fa fa-user"></i>@item.ApplicationUser.Fullname</li>
+                        <li><i class="fa fa-clock-o"></i> @item.PostDate.ToShortTimeString()</li>
+                        <li><i class="fa fa-calendar"></i>@item.PostDate.ToString("yyyy/MM/dd")</li>
+                    </ul>
+
+                </div>
+
+                <p>@item.Summary</p>
+                <a class="btn btn-primary" href="@Url.Action("PostDetails", "AdminPosts", new { id = item.PostID }, null)">ادامه</a>
+            </div>
+            <h4></h4>
+        }
+    </div>
+</div>

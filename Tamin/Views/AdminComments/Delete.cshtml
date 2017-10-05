@@ -1,0 +1,88 @@
+﻿@model Tamin.Models.Comment
+
+@{
+    ViewBag.Title = "حذف ";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="panel panel-danger">
+    <header class="panel-heading">حذف
+	</header>
+    <div class="panel-body">
+
+<h4>آیا مطمئن هستید که این مورد حذف شود؟</h4>
+<fieldset>    
+ @*<div class="display-label">
+         @Html.DisplayNameFor(model => model.Parent.Author)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Parent.Author)
+    </div>
+ <div class="display-label">
+         @Html.DisplayNameFor(model => model.User_ID)
+    </div>*@
+    @*<div class="display-field">
+        @Html.DisplayFor(model => model.User_ID)
+    </div>
+ <div class="display-label">
+         @Html.DisplayNameFor(model => model.PostID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PostID)
+    </div>*@
+ <div class="display-label">
+         @Html.DisplayNameFor(model => model.Comment_Date)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Comment_Date)
+    </div>
+ <div class="display-label">
+         @Html.DisplayNameFor(model => model.CommentIsActive)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CommentIsActive)
+    </div>
+ <div class="display-label">
+         @Html.DisplayNameFor(model => model.Author)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Author)
+    </div>
+ <div class="display-label">
+         @Html.DisplayNameFor(model => model.Comment_title)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Comment_title)
+    </div>
+ <div class="display-label">
+         @Html.DisplayNameFor(model => model.CommentContent)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CommentContent)
+    </div>
+ <div class="display-label">
+         @Html.DisplayNameFor(model => model.Author_Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Author_Email)
+    </div>
+ @*<div class="display-label">
+         @Html.DisplayNameFor(model => model.UserLogsData)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserLogsData)
+    </div>*@
+   </fieldset>
+@using (Html.BeginForm()) {
+@Html.AntiForgeryToken()
+		<div id="buttons">            
+			<div class="col-lg-2">
+            </div>
+            <div class="col-lg-10">
+			<input type="submit" class="btn btn-primary"  value="حذف" />
+            @Html.ActionLink("بازگشت به فهرست", "Index")						
+			</div>
+        </div>
+}
+</div>
+</section>

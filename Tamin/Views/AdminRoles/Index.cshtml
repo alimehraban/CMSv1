@@ -1,0 +1,67 @@
+﻿@using Tamin.Models
+@using Tamin.Helpers
+@model IEnumerable<ApplicationRole>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<section class="panel">
+    <header class="panel-heading">
+        مدیریت نقش ها
+        <span class="tools pull-left">
+            <a class="fa fa-chevron-down" href="javascript:;"></a>
+        </span>
+    </header>
+    <div class="panel-body">
+        <div class="clearfix">
+            <div class="btn-group">
+                @Html.ActionLink("ایجاد", "Create", null, new { @class = "btn btn-success" })
+            </div>
+
+        </div>
+        <div style="margin-top:10px;"></div>
+        <table class="table table-striped">
+            <tr><th>نام نقش</th><th>کاربران</th><th></th></tr>
+            @if (Model.Count() == 0)
+            {
+                <tr><td colspan="4" class="text-center">اطلاعاتی برای نمایش وجود ندارد</td></tr>
+            }
+            else
+            {
+                foreach (ApplicationRole role in Model)
+                {
+                    <tr>
+
+                        <td>@role.Name</td>
+                        <td>
+                            @if (role.Users == null || role.Users.Count == 0)
+                            {
+                                @: کاربری در این نقش موجود نیست
+                            }
+                            else
+                            {
+                                <p>
+                                    @string.Join(",", role.Users.Select(x => Html.GetUserName(x.UserId)))
+                                </p>
+                            }
+                        </td>
+                        <td>
+                            @using (Html.BeginForm("Delete", "AdminRoles", new { id = role.Id }))
+                            {
+                                @Html.ActionLink("ویرایش", "Edit", new { id = role.Id }, new { @class = "btn btn-primary btn-xs" })
+                                <button class="btn btn-danger btn-xs" type="submit">
+                                    حذف
+                                </button>
+                                @Html.ActionLink("ویرایش نقش", "EditRole", new { id = role.Id }, new { @class = "btn btn-success btn-xs" })
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
+</section>
+
+
+

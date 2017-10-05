@@ -1,0 +1,16 @@
+﻿@model IList<Tamin.Models.Post>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li>
+            <h5>
+                @Html.ActionLink(linkText: item.PostTitle,
+                    actionName: "Index",
+                    controllerName: "PageNumber",
+                    routeValues: new { id = item.PostID },
+                    htmlAttributes: null)
+            </h5>
+            @item.PostText
+        </li>
+    }
+</ul>

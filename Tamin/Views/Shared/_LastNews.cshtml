@@ -1,0 +1,44 @@
+﻿
+@using Tamin.Models
+
+@{
+    var db = new ApplicationDbContext();
+}
+
+<div class="art-layout-cell art-sidebar1">
+    <div class="art-block clearfix"style="float: right;">
+    
+        <div class="tab-content">
+            <div id="latest" class="tab-pane fade in active">
+                <h4 class="t active">آخرین خبرها</h4>
+                <div class="art-blockcontent">
+                    <ul>
+                        @foreach (var item in db.Posts.Where(x => x.PostIsActive && !x.Is_delete && x.Startdate <= DateTime.Now || x.Startdate == null && x.Enddate >= DateTime.Now || x.Enddate == null)
+                    .OrderByDescending(x => x.PostID).Take(5))
+                        {
+                            <li>
+                                <a style="color: #337ab7;" href="@Url.Action("PostDetails", "Home", new {id = item.PostID}, null)">@item.PostTitle</a>
+                            </li>
+                        }
+                    </ul>
+                </div>            
+            </div>
+
+            <div id="topview" class="tab-pane fade in active">
+                        <h4 class="t active">پربیننده ترین ها</h4>
+                <div class="art-blockcontent">
+                    <ul>
+                        @foreach (var item in db.Posts.Where(x => x.PostIsActive && !x.Is_delete && x.Startdate <= DateTime.Now || x.Startdate == null && x.Enddate >= DateTime.Now || x.Enddate == null)
+                    .OrderByDescending(x => x.PageCounter).Take(5))
+                        {
+                            <li>
+                                <a style="color: #337ab7;" href="@Url.Action("PostDetails", "Home", new {id = item.PostID}, null)">@item.PostTitle</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div> 
