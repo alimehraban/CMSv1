@@ -6,31 +6,6 @@ namespace Tamin
 {
     public class StateClass
     {
-
-        //public static void CounterState()
-        //{
-
-        //   // DateTime dt = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day);
-        //    if (HttpContext.Current.Request.Cookies["Posts"] != null)
-        //    {
-        //        if (Convert.ToDateTime(HttpContext.Current.Request.Cookies["Posts"].Value.ToString()) != dt)
-        //        {
-        //           // HttpCookie cookieCode = new HttpCookie("Posts", dt.ToString());
-        //           // HttpContext.Current.Response.Cookies.Add(cookieCode);
-        //            CountUpState();
-        //        }
-        //    }
-        //    else
-        //    {
-        //        CountUpState();
-        //        HttpCookie cookie = new HttpCookie("Posts");
-        //        cookie.Value = dt.ToString();
-        //        HttpContext.Current.Response.Cookies.Add(cookie);
-        //    }
-
-
-        //}
-
         static void CountUpState()
         {
             ApplicationDbContext db = new ApplicationDbContext(); 
@@ -51,8 +26,6 @@ namespace Tamin
                 }
                 db.SaveChanges();
             }
-
-
         }
 
         public static ShowStateViewModel ShowState()
@@ -64,9 +37,7 @@ namespace Tamin
                 return new ShowStateViewModel()
                 {
                     OnlineUser = (int)HttpContext.Current.Application["OnlineUser"],
-                    SeeSum = db.Posts.Sum(s => s.PageCounter),
-                  //  SeeToday = db.Posts.First(s => s.PostDate == dt).PageCounter,
-                  //  SeeYesterday = db.Posts.Where(s => s.PostDate == dt2).Select(s => s.PageCounter).FirstOrDefault()
+                    SeeSum = db.Posts.Sum(s => s.PageCounter)
                 };
             }
         }

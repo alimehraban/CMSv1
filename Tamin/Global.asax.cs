@@ -40,13 +40,6 @@ namespace Tamin
         protected void Session_Start()
         {
             HttpContext.Current.Application["OnlineUser"] = ((int)HttpContext.Current.Application["OnlineUser"] + 1);
-           // StateClass.CounterState();
         }
-
-        //protected void Session_End()
-        //{
-        //    HttpContext.Current.Application["OnlineUser"] = ((int)HttpContext.Current.Application["OnlineUser"] - 1);
-        //}
-
     }
 }
