@@ -67,25 +67,22 @@ namespace Tamin.Controllers
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             if (this.IsCaptchaValid("کد وارد شده صحیح نمی باشد"))
-
             {
                 if (!ModelState.IsValid)
                 {
-
                     return View(model);
                 }
 
-                var result = await SignInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, shouldLockout: false);
+                ApplicationUser signedUser = UserManager.FindByEmail(model.Email);
+                var result = await SignInManager.PasswordSignInAsync(signedUser.UserName, model.Password, model.RememberMe, shouldLockout: false);
                 switch (result)
                 {
                     case SignInStatus.Success:
                         return RedirectToAction("Index", "AdminHome");
-                    //return RedirectToLocal(returnUrl);
                     case SignInStatus.LockedOut:
                         return View("Lockout");
                     case SignInStatus.RequiresVerification:
                         return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                    case SignInStatus.Failure:
                     default:
                         ModelState.AddModelError("", "نام کاربری یا کلمه عبور صحیح نیست");
                         return View(model);

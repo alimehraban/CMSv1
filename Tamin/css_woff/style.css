@@ -2,9 +2,6 @@
 body {
 	font-family: IRANSans !important;
 	font-weight: 300;
-	direction: rtl;
-	background-color: #E2E2E2;
-	margin: 0;
 }
 h1, h2, h3, h4, h5, h6,input, textarea {
 	font-family: IRANSans !important;
@@ -12,10 +9,13 @@ h1, h2, h3, h4, h5, h6,input, textarea {
 h1 {
 	font-weight: bold;
 }
-.wrapper {
+a {
+    font-family: IRANSans !important;
+}
+/*.wrapper {
 	max-width: 900px;
 	margin: 0 auto;
-}
+}*/
 .ltr {
 	direction: ltr;
 }

@@ -1214,7 +1214,6 @@
     <Content Include="Views\PageNumber\_ItemsList.cshtml" />
     <Content Include="Views\Home\Shownews.cshtml" />
     <Content Include="Views\Home\PostDetails.cshtml" />
-    <Content Include="Views\Account\NewFolder1\Login.cshtml" />
     <Content Include="Views\AdminHome\Index.cshtml" />
     <Content Include="Views\Home\_ItemList.cshtml" />
     <Content Include="Views\Home\ShowState.cshtml" />

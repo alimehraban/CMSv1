@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace Tamin.Models
 {
@@ -14,7 +11,7 @@ namespace Tamin.Models
                 this.Posts = new HashSet<Post>();
             }
             [Key]
-            public int PostGroupID { get; set; }
+            public int PostGroupId { get; set; }
 
             [Display(Name = "والد گروه خبر")]
             public int? ParentId { get; set; }

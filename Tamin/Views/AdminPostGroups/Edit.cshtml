@@ -15,7 +15,7 @@
             @Html.AntiForgeryToken()
             @Html.ValidationSummary(true)
             <fieldset>
-                @Html.HiddenFor(model => model.PostGroupID)
+                @Html.HiddenFor(model => model.PostGroupId)
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.ParentId, "والد گروه محصول", new { @class = "control-label col-md-2" })
