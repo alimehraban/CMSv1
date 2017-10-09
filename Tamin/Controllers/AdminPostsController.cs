@@ -130,7 +130,7 @@ namespace Tamin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "PostID,PostGroupID,ApplicationUserId,PostTitle,Summary,PostText,PostIsActive,PostDate,Modifiedat,Modifiedby,Is_delete,Startdate,Enddate,Comment_conut,Comment_status,ImageUrl,PostThumbnailImageUrl,Priority")] Post post, HttpPostedFileBase ImageUrl)
+        public async Task<ActionResult> Edit([Bind(Include = "PostID,PostGroupID,ApplicationUserId,PostTitle,Summary,PostText,PostIsActive,Modifiedat,Modifiedby,Is_delete,Startdate,Enddate,Comment_conut,Comment_status,ImageUrl,PostThumbnailImageUrl,Priority")] Post post, HttpPostedFileBase ImageUrl)
         {
             if (ModelState.IsValid)
             {
@@ -158,6 +158,7 @@ namespace Tamin.Controllers
                     post.ImageUrl = newFilenameUrl;
                     post.PostThumbnailImageUrl = thumbnailUrl;
                 }
+                post.PostDate=DateTime.Now;
                 post.Modifiedby = User.Identity.GetUserId();
                 post.Modifiedat=DateTime.Now;
                 post.PostText = Server.HtmlDecode(post.PostText);

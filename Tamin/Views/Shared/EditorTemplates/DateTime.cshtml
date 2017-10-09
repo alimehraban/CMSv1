@@ -1,3 +1,29 @@
-@model DateTime?
+@*@model DateTime?*@
 
-@(Html.Kendo().DateTimePickerFor(m => m))
+@*@(Html.Kendo().DateTimePickerFor(m => m))*@
+@using System.Globalization
+@model DateTime?
+<link href="~/Content/PersianDatePicker.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-clockpicker.min.css" rel="stylesheet" />
+<script src="~/Scripts/PersianDatePicker.min.js"></script>
+<script src="~/Scripts/bootstrap-clockpicker.min.js"></script>
+@{
+    Func<DateTime, string> toPersianDate = date =>
+    {
+        var dateTime = new DateTime(date.Year, date.Month, date.Day, new GregorianCalendar());
+        var persianCalendar = new PersianCalendar();
+        return persianCalendar.GetYear(dateTime) + "/" +
+               persianCalendar.GetMonth(dateTime).ToString("00") + "/" +
+               persianCalendar.GetDayOfMonth(dateTime).ToString("00");
+    };
+    var today = toPersianDate(DateTime.Now);
+    var name = this.ViewContext.ViewData.ModelMetadata.PropertyName;
+    var value = Model.HasValue ? toPersianDate(Model.Value) : string.Empty;
+}
+<input type="text" dir="ltr"
+       name="@name" id="@name"
+       value="@value"
+       autocomplete="off"
+       class="form-control col-lg-2 col-md-2"
+       onclick="PersianDatePicker.Show(this,'@today');" />
+

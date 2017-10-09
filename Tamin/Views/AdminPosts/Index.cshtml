@@ -40,7 +40,12 @@
                     <th>
                         @Html.DisplayName("تصویر خبر")
                     </th>
-
+                    <th>
+                        @Html.DisplayName("نمایش در سایت")
+                    </th>
+                    <th>
+                        @Html.DisplayName("زمان آخرین ویرایش")
+                    </th>
                     <th>@Html.DisplayName("دستورات")</th>
                 </tr>
             </thead>
@@ -73,6 +78,20 @@
                                     <img style="border-radius: 5px;" width="50" height="50" src="@Url.Content(@item.ImageUrl)" />
                                 }
 
+                            </td>
+                            <td>
+                                
+                                @if (@item.PostIsActive)
+                                {
+                                    @:بله
+                                }
+                                else
+                                {
+                                    @:خیر
+                                }
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Modifiedat)
                             </td>
                             <td>
 
