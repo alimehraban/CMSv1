@@ -20,7 +20,7 @@ namespace Tamin.Controllers
         // GET: AdminPosts
         public async Task<ActionResult> Index()
         {
-            var posts = db.Posts.Include(p => p.ApplicationUser).Include(p => p.PostGroups);
+            var posts = db.Posts.Include(p => p.ApplicationUser).Include(p => p.PostGroups).OrderBy(p=>p.PostDate).ThenBy(p=>p.Modifiedat);
             return View(await posts.ToListAsync());
         }
 
@@ -97,6 +97,7 @@ namespace Tamin.Controllers
                 }
                 post.ApplicationUserId = User.Identity.GetUserId();
                 post.PostText = Server.HtmlDecode(post.PostText);
+                post.PostDate=DateTime.Now.AddDays(1);
                 db.Posts.Add(post);
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -157,7 +158,8 @@ namespace Tamin.Controllers
                     post.ImageUrl = newFilenameUrl;
                     post.PostThumbnailImageUrl = thumbnailUrl;
                 }
-                post.ApplicationUserId = User.Identity.GetUserId();
+                post.Modifiedby = User.Identity.GetUserId();
+                post.Modifiedat=DateTime.Now;
                 post.PostText = Server.HtmlDecode(post.PostText);
                 db.Entry(post).State = EntityState.Modified;
                 await db.SaveChangesAsync();

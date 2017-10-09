@@ -31,7 +31,6 @@ namespace Tamin.Models
         [Display(Name = "خلاصه خبر")]
         [Required(ErrorMessage = "لطفا {0} را وارد نمایید")]
         [UIHint("Html")]
-
         [AllowHtml]
         public string Summary { get; set; }
 
@@ -44,16 +43,10 @@ namespace Tamin.Models
         [Display(Name = "وضعیت نمایش خبر")]
         public bool PostIsActive { get; set; }
 
-
-        [Display(Name = "تاریخ ایجاد خبر")]
-        [Required(ErrorMessage = "لطفا {0} را وارد نمایید")]
-        //[DisplayFormat(DataFormatString = "{0:yyyy/MM/dd}", ApplyFormatInEditMode = true)]
-        [UIHint("DateTimePicker")]
         public DateTime PostDate { get; set; }
 
 
         [Display(Name = "تاریخ ویرایش خبر")]
-        [DataType(DataType.DateTime)]
         public DateTime? Modifiedat { get; set; }
 
         [Display(Name = "ویرایش توسط")]
@@ -67,7 +60,6 @@ namespace Tamin.Models
 
 
         [Display(Name = "زمان شروع نمایش خبر")]
-        //[DataType(DataType.DateTime)]
         [UIHint("DateTimePicker2")]
         public DateTime? Startdate { get; set; }
 
