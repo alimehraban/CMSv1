@@ -10,7 +10,7 @@
 <div class="widget">
 <div class="widget-header">
     <span class="widget-caption">ایجاد خبر جدید</span>
-</div><!--Widget Header-->
+</div>
 <div class="widget-body">
 
     <div class="row">
@@ -28,7 +28,6 @@
                     @Html.LabelFor(model => model.PostTitle, new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         @Html.EditorFor(model => model.PostTitle, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.TextBoxFor(model => model.PostTitle, new { htmlAttributes = new { @class = "form-control" } })
                         @Html.ValidationMessageFor(model => model.PostTitle)
                     </div>
                 </div>

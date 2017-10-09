@@ -36,9 +36,11 @@ namespace Tamin.Controllers
         public ActionResult Shownews()
         {
             var posts = (from p in db.Posts
-                    where p.PostIsActive && !p.Is_delete && p.Startdate <= DateTime.Now ||
-                          p.Startdate == null && p.Enddate >= DateTime.Now || p.Enddate == null
-                    select p)
+                    where (p.PostIsActive && !p.Is_delete && (p.Startdate!=null  && p.Startdate <= DateTime.Now)) ||
+                          (p.PostIsActive && !p.Is_delete && (p.Enddate != null && p.Enddate >= DateTime.Now)) ||
+                          (p.PostIsActive && !p.Is_delete && (p.Startdate != null && p.Startdate <= DateTime.Now) && (p.Enddate != null && p.Enddate >= DateTime.Now)) ||
+                          (p.PostIsActive && !p.Is_delete)
+                         select p)
                 .OrderByDescending(x => x.Priority)
                 .ThenByDescending(y => y.PostID);
 
@@ -80,18 +82,16 @@ namespace Tamin.Controllers
         {
             if (ModelState.IsValid)
             {
-                string newFilenameUrl = string.Empty;
-                string thumbnailUrl = string.Empty;
                 if (ImageUrl != null)
                 {
                     string filename = Path.GetFileName(ImageUrl.FileName);
                     string newFilename = Guid.NewGuid().ToString()
                                              .Replace("-", string.Empty) +
                                          Path.GetExtension(filename);
-                    newFilenameUrl = "/Uploads/Post/" + newFilename;
+                    var newFilenameUrl = "/Uploads/Post/" + newFilename;
                     string physicalFilename = Server.MapPath(newFilenameUrl);
                     ImageUrl.SaveAs(physicalFilename);
-                    thumbnailUrl = Utils.CreateThumbnail(physicalFilename);
+                    var thumbnailUrl = Utils.CreateThumbnail(physicalFilename);
                     post.ImageUrl = newFilenameUrl;
                     post.PostThumbnailImageUrl = thumbnailUrl;
                 }

@@ -28,8 +28,11 @@ namespace Tamin.Controllers
         {
             var skipRecords = pageNumber * recordsPerPage;
             var d = (from p in db.Posts
-                     where p.PostIsActive && !p.Is_delete && p.Startdate <= DateTime.Now || p.Startdate == null && p.Enddate >= DateTime.Now || p.Enddate == null
-                     select p)
+                    where (p.PostIsActive && !p.Is_delete && (p.Startdate != null && p.Startdate <= DateTime.Now)) ||
+                          (p.PostIsActive && !p.Is_delete && (p.Enddate != null && p.Enddate >= DateTime.Now)) ||
+                          (p.PostIsActive && !p.Is_delete && (p.Startdate != null && p.Startdate <= DateTime.Now) && (p.Enddate != null && p.Enddate >= DateTime.Now)) ||
+                          (p.PostIsActive && !p.Is_delete)
+                    select p)
                 .OrderByDescending(x => x.Priority)
                 .ThenByDescending(z => z.PostDate)
                 .ThenByDescending(y => y.PostID)
@@ -50,14 +53,6 @@ namespace Tamin.Controllers
 
             return PartialView("_ItemList", list);
         }
-
-        //public ActionResult About()
-        //{
-        //    ViewBag.Message = "Your application description page.";
-
-        //    return View();
-        //}
-
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
@@ -71,7 +66,6 @@ namespace Tamin.Controllers
 
             return View();
         }
-
         public ActionResult Shownews()
         {
             var posts = (from p in db.Posts
@@ -79,9 +73,6 @@ namespace Tamin.Controllers
                          select p);
             return View(posts.ToList());
         }
-
-
-
         public async Task<ActionResult> PostDetails(int? id)
         {
             if (id == null)
@@ -95,11 +86,11 @@ namespace Tamin.Controllers
             }
             ViewBag.info = TempData["info"];
             ViewBag.color = TempData["color"];
-            increadcount(post.PostID);
+            Increadcount(post.PostID);
             return View(post);
         }
 
-        private void increadcount(int postid)
+        private void Increadcount(int postid)
         {
             using (db)
             {
