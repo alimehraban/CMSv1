@@ -1,89 +1,216 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/AdminContent/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/bundles/mybootstrap")
+    @Styles.Render("~/bundles/mybeyond")
     <link href="~/css_woff/style.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="k-rtl">
-        <section id="container">
-            <!--header start-->
-            <header class="header fixed-top clearfix">
-                <!--logo start-->
-                <div class="brand">
-                    <a href="#" class="logo">
-                        بخش مدیریت سایت
-                    </a>
-                    <div class="sidebar-toggle-box">
-                        <div id="MenuRight" class="fa fa-bars"></div>
-                    </div>
-                </div>
-                <!--logo end-->
-
-
-            </header>
-            <!--header end-->
-            <aside>
-                <div id="sidebar" class="nav-collapse">
-                    <!-- sidebar menu start-->
-                    <div class="leftside-navigation">
-                        <ul class="sidebar-menu" id="nav-accordion">
-                            <li>
-                                <a class="active" href="@Url.Action("Index","AdminHome")">
-                                    <i class="fa fa-dashboard"></i>
-                                    <span>داشبورد</span>
-                                </a>
-                            </li>
-                            <li class="sub-menu">
-                                <a href="javascript:;">
-                                    <i class="fa fa-laptop"></i>
-                                    <span>بخش مدیریت</span>
-                                </a>
-                                <ul class="sub">
-                                    <li><a href="@Url.Action("Index","AdminUsers")"><i class="fa fa-users"></i>
-                                        <span>مدیریت کاربری</span></a></li>
-                                    <li><a href="@Url.Action("Index","AdminRoles")"><i class="fa fa-lock"></i>
-                                        <span>مدیریت نقش ها</span></a></li>
-                                    <li><a href="@Url.Action("Index","AdminComments")"><i class="fa fa-comment"></i>
-                                        <span>کامنت ها</span></a></li>
-                                    <li><a href="@Url.Action("Index","AdminPostGroups")"><i class="fa fa-tag"></i>
-                                        <span>مجموعه ها</span></a></li>
-                                    <li><a href="@Url.Action("Index","AdminPosts")"><i class="fa fa-file-text"></i>
-                                        <span>مدیریت مطالب</span></a></li>
-                                    <li><a href="@Url.Action("Index","AdminContacts")"><i class="fa fa-phone"></i>
-                                        <span>تماس با ما</span></a></li>
-
+<div class="loading-container">
+    <div class="loader"></div>
+</div>
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="navbar-container navbar-fixed-top">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">
+                    <small>
+                        <img src="~/assets/img/logo-inverted.png" alt="" />
+                    </small>
+                </a>
+            </div>
+            <div class="sidebar-collapse" id="sidebar-collapse">
+                <i class="collapse-icon fa fa-bars"></i>
+            </div>
+            <div class="navbar-header pull-left">
+                <div class="navbar-account">
+                    <ul class="account-area">
+                        <li>
+                            <a class="login-area dropdown-toggle" data-toggle="dropdown">
+                                <div class="avatar" title="View your public profile">
+                                    <img src="~/assets/img/avatars/useravatar.jpg">
+                                </div>
+                                <section>
+                                    <h2>
+                                        <span class="profile">
+                                            @{
+                                                if (Request.IsAuthenticated)
+                                                {
+                                                    @User.Identity.GetUserName()
+                                                }
+                                            }
+                                        </span>
+                                    </h2>
+                                </section>
+                            </a>
+                            <ul class="pull-right dropdown-menu dropdown-arrow dropdown-login-area">
+                                <li class="username">
+                                    @{
+                                        if (Request.IsAuthenticated)
+                                        {
+                                            @User.Identity.GetUserName()
+                                        }
+                                    }
+                                @*<li>
+                                    <a href="~/TAdmin/Profile/changepassword.aspx">تغییر رمز ورود</a>
+                                </li>*@
+                                <li class="theme-area">
+                                    <ul class="colorpicker" id="skin-changer">
+                                        <li><a class="colorpick-btn" href="#" style="background-color: #5DB2FF;" rel="~/assets/css/skins/blue.min.css"></a></li>
+                                        <li><a class="colorpick-btn" href="#" style="background-color: #2dc3e8;" rel="~/assets/css/skins/azure.min.css"></a></li>
+                                        <li><a class="colorpick-btn" href="#" style="background-color: #03B3B2;" rel="~/assets/css/skins/teal.min.css"></a></li>
+                                        <li><a class="colorpick-btn" href="#" style="background-color: #53a93f;" rel="~/assets/css/skins/green.min.css"></a></li>
+                                        <li><a class="colorpick-btn" href="#" style="background-color: #FF8F32;" rel="~/assets/css/skins/orange.min.css"></a></li>
+                                        <li><a class="colorpick-btn" href="#" style="background-color: #cc324b;" rel="~/assets/css/skins/pink.min.css"></a></li>
+                                        <li><a class="colorpick-btn" href="#" style="background-color: #AC193D;" rel="~/assets/css/skins/darkred.min.css"></a></li>
+                                        <li><a class="colorpick-btn" href="#" style="background-color: #8C0095;" rel="~/assets/css/skins/purple.min.css"></a></li>
+                                        <li><a class="colorpick-btn" href="#" style="background-color: #0072C6;" rel="~/assets/css/skins/darkblue.min.css"></a></li>
+                                        <li><a class="colorpick-btn" href="#" style="background-color: #585858;" rel="~/assets/css/skins/gray.min.css"></a></li>
+                                        <li><a class="colorpick-btn" href="#" style="background-color: #474544;" rel="~/assets/css/skins/black.min.css"></a></li>
+                                        <li><a class="colorpick-btn" href="#" style="background-color: #001940;" rel="~/assets/css/skins/deepblue.min.css"></a></li>
+                                    </ul>
+                                </li>
+                                <li class="dropdown-footer">
                                     
-                                    
-                                </ul>
-                            </li>
+                                    <a class="" href="javascript:document.getElementById('logoutForm').submit()">
+                                         خروج از پرتال
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
 
-
-
-                        </ul>
-                    </div>
-                    <!-- sidebar menu end-->
                 </div>
-            </aside>
-            <section id="main-content">
-                <section class="wrapper">
-                    <div class="row">
-                        <div class="col-md-12">
-                            @RenderBody()
-                        </div>
-                    </div>
-                </section>
-
-            </section>
-        </section>
+            </div>
+        </div>
     </div>
-    @Scripts.Render("~/bundles/tamin")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+</div>
+<div class="main-container container-fluid">
+    <div class="page-container">
+        <div class="page-sidebar sidebar-fixed" id="sidebar">
+            <div class="sidebar-header-wrapper">
+                <input type="text" class="searchinput" />
+                <i class="searchicon fa fa-search"></i>
+            </div>
+            <ul class="nav sidebar-menu">  
+                <li>
+                    <a href="@Url.Action("Index", "AdminHome")">
+                        <i class="menu-icon fa fa-desktop"></i>
+                        <span>داشبورد</span>
+                    </a>
+                </li>
+                <li class="active open">
+                    <a href="#" class="menu-dropdown">
+                        <i class="menu-icon fa fa-user-secret"></i>
+                        <span class="menu-text">مدیریت مطالب</span>
+                        <i class="menu-expand"></i>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="@Url.Action("Index","AdminPosts")"><i class="fa fa-file-text"></i>
+                                <span>مدیریت مطالب</span></a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index","AdminPostGroups")"><i class="fa fa-tag"></i>
+                                <span>مجموعه ها</span></a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index","AdminComments")"><i class="fa fa-comment"></i>
+                                <span>کامنت ها</span></a>
+                        </li>
+                    </ul>
+                </li>
+                
+                <li>
+                    <a href="#" class="menu-dropdown">
+                        <i class="menu-icon fa fa-user-secret"></i>
+                        <span class="menu-text">مدیریت کاربری</span>
+
+                        <i class="menu-expand"></i>
+                    </a>
+                    <ul class="submenu">
+                        <li>
+                            <a href="@Url.Action("Index","AdminUsers")">
+                                <i class="fa fa-users"></i>
+                                <span>مدیریت کاربری</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Index","AdminRoles")">
+                                <i class="fa fa-lock"></i>
+                                <span>مدیریت نقش ها</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="@Url.Action("Index", "AdminContacts")">
+                        <i class="menu-icon fa fa-phone"></i>
+                        <span>تماس با ما</span>
+                    </a>
+                </li>
+                <li>
+                    @{
+                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm"}))
+                        {
+                            @Html.AntiForgeryToken()
+                            <a class="btn" href="javascript:document.getElementById('logoutForm').submit()">
+                                <i class="btn-label fa fa-close"></i>خروج</a>
+                            
+                        }
+                    }
+                </li>            
+                
+
+            </ul>
+
+        </div>
+        <div class="page-content">
+            <div class="page-breadcrumbs breadcrumbs-fixed">
+                <ul class="breadcrumb">
+                    <li>
+                        پرتال سازمان تأمین اجتماعی شعبه شهر صنعتی رشت</li>
+                </ul>
+            </div>
+            <div class="page-header position-relative">
+                <div class="header-title">
+                    <h1>
+                        <asp:Label ID="lblpagename" runat="server" Text="Label"></asp:Label>
+                    </h1>
+                </div>
+                <div class="header-buttons">
+                    <a class="sidebar-toggler" href="#">
+                        <i class="fa fa-arrows-h"></i>
+                    </a>
+                    <a class="fullscreen" id="fullscreen-toggler" href="#">
+                        <i class="glyphicon glyphicon-fullscreen"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="page-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+    
+
+@Scripts.Render("~/bundles/myadminscript")
+    
+
+@RenderSection("scripts", required: false)
     <script>
         $(document).ready(function () {
             EditableTable.init();

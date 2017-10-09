@@ -6,90 +6,89 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-
-<section class="panel">
-    <header class="panel-heading">
-        فهرست خبرها
-        <span class="tools pull-left">
-            <a class="fa fa-chevron-down" href="javascript:;"></a>
-        </span>
-    </header>
-    
-    
-    <div class="panel-body">
+<div class="widget">
+<div class="widget-header">
+    <span class="widget-caption">فهرست خبرها</span>
+</div>
+<div class="widget-body">
+    <div class="row padding-10">
         <div class="adv-table editable-table">
             <div class="clearfix">
                 <div class="btn-group">
-                    @Html.ActionLink("ایجاد", "Create", null, new { @class = "btn btn-success" })
+                    @Html.ActionLink("ایجاد مطلب جدید", "Create", null, new { @class = "btn btn-success" })
+
                 </div>
             </div>
         </div>
-        <div class="space15"></div>
+        <div class="col-md-12">
+            <br />
+        </div>
         <table class="table editable-table table-hover table-bordered" id="editable-sample">
             <thead>
-            <tr>
+                <tr>
 
-                <th>
-                    @Html.DisplayName("عنوان خبر")                
+                    <th>
+                        @Html.DisplayName("عنوان خبر")
 
-                </th>
-                <th>
-                    @Html.DisplayName("نویسنده")                
-                </th>
-                <th>
-                    @Html.DisplayName("زمان ایجاد خبر")
-                </th>                
-                <th>
-                    @Html.DisplayName("تصویر خبر")
-                </th>
+                    </th>
+                    <th>
+                        @Html.DisplayName("نویسنده")
+                    </th>
+                    <th>
+                        @Html.DisplayName("زمان ایجاد خبر")
+                    </th>
+                    <th>
+                        @Html.DisplayName("تصویر خبر")
+                    </th>
 
-                <th>@Html.DisplayName("دستورات")</th>
-            </tr>
+                    <th>@Html.DisplayName("دستورات")</th>
+                </tr>
             </thead>
             <tbody>
-            @if (!Model.Any())
+                @if (!Model.Any())
             {
-                <tr><td colspan="8" class="text-center">هیچ داده ای جهت نمایش وجود ندارد</td></tr>
-            }
-            else
-            {
-                foreach (var item in Model)
+                    <tr><td colspan="8" class="text-center">هیچ داده ای جهت نمایش وجود ندارد</td></tr>
+                }
+                else
                 {
-                    <tr class="">
+                    foreach (var item in Model)
+                    {
+                        <tr class="">
 
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PostTitle)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.ApplicationUser.Fullname)
-                        </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PostTitle)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ApplicationUser.Fullname)
+                            </td>
 
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PostDate)
-                        </td>
-                        <td>
-                           
+                            <td>
+                                @Html.DisplayFor(modelItem => item.PostDate)
+                            </td>
+                            <td>
+
                                 @if (!String.IsNullOrEmpty(@item.ImageUrl))
                                 {
                                     <img style="border-radius: 5px;" width="50" height="50" src="@Url.Content(@item.ImageUrl)" />
                                 }
-                            
-                        </td>
-                        <td>
+
+                            </td>
+                            <td>
 
 
                                 @Html.ActionLink("ویرایش", "Edit", new { id = item.PostID }, new { @class = "btn btn-primary btn-xs" })
 
                                 @Html.ActionLink("حذف", "Delete", new { id = item.PostID }, new { @class = "btn btn-danger btn-xs" })
 
-                            
-                        </td>
-                    </tr>
+
+                            </td>
+                        </tr>
+                    }
                 }
-            }
-                
+
             </tbody>
         </table>
     </div>
-</section>
+</div>
+</div>

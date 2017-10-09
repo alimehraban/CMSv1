@@ -5,18 +5,9 @@
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
         @Html.AntiForgeryToken()
-
-        <ul class="nav navbar-nav navbar-right">
-            <li @*class="btn btn-send"*@ style="background: #00A8B3; border-radius: 4px;">
-                @Html.ActionLink("سلام " + User.Identity.GetUserName() + "!", "Index", "Home", routeValues: null, htmlAttributes: new { title = "" })
-            </li>
-        </ul>
-        <br /><br /><br />
-        <ul>
-            <li style="background: #00A8B3; border-radius: 4px; padding: 15px; margin-right: -30px; text-align: center;">
-                <a href="javascript:document.getElementById('logoutForm').submit()"><i class=""></i>خروج</a>
-            </li>
-        </ul>
+        @Html.ActionLink("سلام " + User.Identity.GetUserName() + "!", "Index", "Home", routeValues: null, htmlAttributes: new { @class = "btn btn-success shiny" })
+                <a class="btn btn-labeled btn-danger" href="javascript:document.getElementById('logoutForm').submit()">
+                    <i class="btn-label fa fa-close"></i>خروج</a>
     }
 }
 else

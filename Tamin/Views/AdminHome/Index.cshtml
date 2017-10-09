@@ -4,8 +4,19 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>صفحه مدیریت</h2>
-
-<ul class="nav nav-pills">
-    <li>@Html.Partial("_LoginPartial")</li>
-</ul>
+<div class="row">
+    <div class="col-md-12">
+        <div class="widget">
+            <div class="widget-header">
+                <span class="widget-caption">صفحه مدیریت</span>
+            </div>
+            <div class="widget-body">
+                <div class="row padding-20">
+                    <div class="col-md-12">
+                        @Html.Partial("_LoginPartial")
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

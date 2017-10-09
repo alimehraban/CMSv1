@@ -59,6 +59,25 @@ namespace Tamin
                 "~/Scripts/js/data-tables/DT_bootstrap.css",
                 "~/Content/style.css",
                 "~/Content/style-responsive.css"));
+
+            bundles.Add(new StyleBundle("~/bundles/mybootstrap").Include(
+                "~/assets/css/bootstrap.min.css",
+                "~/assets/css/bootstrap-rtl.min.css",
+                "~/assets/css/font-awesome.min.css"));
+
+            bundles.Add(new StyleBundle("~/bundles/mybeyond").Include(
+                "~/assets/css/beyond-rtl.min.css",
+                "~/assets/css/animate.min.css",
+                "~/assets/css_woff/style.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/myadminscript").Include(
+                "~/assets/js/jquery.min.js",
+                "~/assets/js/bootstrap.min.js",
+                "~/assets/js/slimscroll/jquery.slimscroll.min.js",
+                "~/assets/js/skins.min.js",
+                "~/assets/js/beyond.min.js"));
+
+
         }
     }
 }

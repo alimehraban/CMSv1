@@ -4,125 +4,24 @@
     ViewBag.Title = "حذف ";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-
-<section class="panel panel-danger">
-    <header class="panel-heading">حذف
-	</header>
-    <div class="panel-body">
-
-<h4>آیا مطمئن هستید که این مورد حذف شود؟</h4>
-<fieldset>    
- @*<div class="display-label">
-         @Html.DisplayNameFor(model => model.ApplicationUser.Fullname)
+<div class="widget">
+    <div class="widget-header bg-danger">
+        <span class="widget-caption">فهرست خبرها</span>
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ApplicationUser.Fullname)
-    </div>*@
- @*<div class="display-label">
-         @Html.DisplayNameFor(model => model.PostGroups.PostGroupTitle)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PostGroups.PostGroupTitle)
-    </div>*@
- <div class="display-label">
-         @Html.DisplayNameFor(model => model.PostTitle)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PostTitle)
-    </div>
- @*<div class="display-label">
-         @Html.DisplayNameFor(model => model.Summary)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Summary)
-    </div>
- <div class="display-label">
-         @Html.DisplayNameFor(model => model.PostText)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PostText)
-    </div>
- <div class="display-label">
-         @Html.DisplayNameFor(model => model.PostIsActive)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PostIsActive)
-    </div>
- <div class="display-label">
-         @Html.DisplayNameFor(model => model.PostDate)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PostDate)
-    </div>*@
- @*<div class="display-label">
-         @Html.DisplayNameFor(model => model.Modifiedat)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Modifiedat)
-    </div>*@
- @*<div class="display-label">
-         @Html.DisplayNameFor(model => model.Modifiedby)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Modifiedby)
-    </div>*@
- @*<div class="display-label">
-         @Html.DisplayNameFor(model => model.Is_delete)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Is_delete)
-    </div>*@
- @*<div class="display-label">
-         @Html.DisplayNameFor(model => model.Startdate)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Startdate)
-    </div>
- <div class="display-label">
-         @Html.DisplayNameFor(model => model.Enddate)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Enddate)
-    </div>*@
- @*<div class="display-label">
-         @Html.DisplayNameFor(model => model.Comment_conut)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Comment_conut)
-    </div>*@
- @*<div class="display-label">
-         @Html.DisplayNameFor(model => model.Comment_status)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Comment_status)
-    </div>*@
-    @*<div class="display-label">
-         @Html.DisplayNameFor(model => model.ImageUrl)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ImageUrl)
-    </div>
- <div class="display-label">
-         @Html.DisplayNameFor(model => model.PostThumbnailImageUrl)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PostThumbnailImageUrl)
-    </div>*@
-    
-    
-    
-
-</fieldset>
-@using (Html.BeginForm()) {
-@Html.AntiForgeryToken()
-		<div id="buttons">            
-			<div class="col-lg-2">
-            </div>
-            <div class="col-lg-10">
-			<input type="submit" class="btn btn-primary"  value="حذف" />
-            @Html.ActionLink("بازگشت به فهرست", "Index")						
-			</div>
+    <div class="widget-body">
+        <div class="row padding-10">
+            <br/><h4>آیا مطمئن هستید که مطلب با عنوان " @Html.DisplayFor(model => model.PostTitle) "  حذف شود؟</h4><br/>
+            
+            @using (Html.BeginForm()) {
+                @Html.AntiForgeryToken()
+                <div id="buttons">
+                    <div class="col-md-12 text-center">
+                        <input type="submit" class="btn btn-success"  value="حذف مطلب" />
+                        @Html.ActionLink("انصراف/بازگشت", "Index", routeValues: null, htmlAttributes: new { @class = "btn btn-danger" })						
+                    </div>
+                </div>
+            }
         </div>
-}
+    </div>
 </div>
-</section>
+

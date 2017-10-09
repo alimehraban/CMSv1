@@ -1,0 +1,45 @@
+﻿.Grid {background-color: #fff; margin: 5px 0 10px 0; border: solid 1px #525252; border-collapse:collapse; color: #474747;font-weight:normal;}
+
+.Grid td {
+      border: solid 1px #E2E2E2; }
+.Grid th  {
+
+      padding : 4px 2px;
+      color: #fff;
+      text-align:center;
+      background:#5DB2FF;
+      border: solid 1px #11A9CC;
+      font-size: 1.15em; 
+      font-weight:normal;
+
+}
+.Grid th a 
+{ 
+  color: yellow; 
+  
+}
+.Grid tr {
+    font-weight: bold; font-size: 0.95em; line-height: 19px;
+}
+.Grid .alt {
+      background: #f6fbfe; }
+.Grid .pgr {background: #7DD4E7; }
+.Grid .pgr table { margin: 3px 0;}
+.Grid .pgr td { border-width: 0; padding: 0 6px; border-left: solid 1px #11A9CC; font-weight: bold; color: #000; line-height: 13px; }  
+.Grid .pgr a { color: #0D7689; text-decoration: none;font-family: iransans;}
+.Grid .pgr a:hover { color: #000; text-decoration: none; }
+.Grid .pgr a:active { color: #000; text-decoration: none; }
+.Grid .foo{
+    border:solid 2px #fff;
+}
+.Grid .sel{
+    background:#2DC3E8;
+}
+
+
+.mg2 {
+    text-align: center;
+    border-radius: 5px;
+    padding: 0 0 0 0;
+    border: solid 1px #006400;
+}

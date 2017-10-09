@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<section class="panel">
+@*<section class="panel">
     <header class="panel-heading">
         ویرایش
     </header>
@@ -72,77 +72,6 @@
                         @Html.ValidationMessageFor(model => model.Priority)
                     </div>
                 </div>
-                @*<div class="form-group">
-                        @Html.LabelFor(model => model.Modifiedat, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Modifiedat)
-                            @Html.ValidationMessageFor(model => model.Modifiedat)
-                        </div>
-                    </div>*@
-
-                @*<div class="form-group">
-                        @Html.LabelFor(model => model.Modifiedby, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Modifiedby)
-                            @Html.ValidationMessageFor(model => model.Modifiedby)
-                        </div>
-                    </div>*@
-
-                @*<div class="form-group">
-                        @Html.LabelFor(model => model.Is_delete, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Is_delete)
-                            @Html.ValidationMessageFor(model => model.Is_delete)
-                        </div>
-                    </div>*@
-
-                @*<div class="form-group">
-                        @Html.LabelFor(model => model.Startdate, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Startdate)
-                            @Html.ValidationMessageFor(model => model.Startdate)
-                        </div>
-                    </div>*@
-
-                @*<div class="form-group">
-                        @Html.LabelFor(model => model.Enddate, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Enddate)
-                            @Html.ValidationMessageFor(model => model.Enddate)
-                        </div>
-                    </div>*@
-                @*<div class="form-group">
-                    <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#panel">تاریخ شروع و تاریخ پایان برای خبر</button>
-                    <div id="panel" class="collapse">
-                        <BR />
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Startdate, new { @class = "control-label col-md-2" })
-                            <div class="col-md-2">
-                                @Html.EditorFor(model => model.Startdate, new { @class = "control-label col-md-2" })
-                                @Html.ValidationMessageFor(model => model.Startdate)
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            @Html.LabelFor(model => model.Enddate, new { @class = "control-label col-md-2" })
-                            <div class="col-md-2">*@
-                @*@Html.EditorFor(model => model.Enddate)*@
-                @*@Html.EditorFor(model => model.Enddate, new { @class = "col-md-2" })
-                                    @Html.ValidationMessageFor(model => model.Enddate)
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>*@
-
-                @*<div class="form-group">
-                        @Html.LabelFor(model => model.Comment_conut, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.Comment_conut)
-                            @Html.ValidationMessageFor(model => model.Comment_conut)
-                        </div>
-                    </div>*@
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Comment_status, new { @class = "control-label col-md-2" })
@@ -177,10 +106,6 @@
 
                     </div>
                 </div>
-
-
-
-
                 <div class="form-group">
                     @Html.LabelFor(model => model.ImageUrl, new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
@@ -188,14 +113,6 @@
                         @Html.ValidationMessageFor(model => model.ImageUrl)
                     </div>
                 </div>
-
-                @*<div class="form-group">
-                        @Html.LabelFor(model => model.PostThumbnailImageUrl, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.PostThumbnailImageUrl)
-                            @Html.ValidationMessageFor(model => model.PostThumbnailImageUrl)
-                        </div>
-                    </div>*@
 
                 <div id="buttons">
                     <div class="col-md-2">
@@ -209,4 +126,171 @@
 
         }
     </div>
-</section>
+</section>*@
+
+
+
+<div class="widget">
+    <div class="widget-header">
+        <span class="widget-caption">ایجاد خبر جدید</span>
+    </div><!--Widget Header-->
+    <div class="widget-body">
+
+        <div class="row">
+
+            @using (Html.BeginForm("Edit", "AdminPosts", FormMethod.Post, new { @id = "form_UploadFile", @enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.PostID)
+                <div class="col-md-12 padding-10">
+                    <div class="form-group">
+                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="col-md-12 padding-10">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PostTitle, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.PostTitle, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.PostTitle)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 padding-10">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PostGroupID, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("PostGroupID", "--عنوان گروه خبر را انتخاب کنید--")
+                            @Html.ValidationMessageFor(model => model.PostGroupID)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 padding-10">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Summary, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Summary)
+                            @Html.ValidationMessageFor(model => model.Summary)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 padding-10">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PostText, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.PostText)
+                            @Html.ValidationMessageFor(model => model.PostText)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 padding-10">
+                    <div class="form-group" style="display: none;">
+
+                        @Html.LabelFor(model => model.PostDate, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.PostDate)
+                            @Html.ValidationMessageFor(model => model.PostDate)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 padding-10">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PostIsActive, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @*@Html.EditorFor(model => model.PostIsActive)*@
+                            <label class="pull-right">
+                                @Html.EditorFor(model => model.PostIsActive, new { @class = "checkbox", @type = "checkbox" })
+                                <span class="text"></span>
+                            </label>
+                            @Html.ValidationMessageFor(model => model.PostIsActive)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 padding-10">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Priority, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @*@Html.EditorFor(model => model.Priority)*@
+                            <label class="pull-right">
+                                @Html.EditorFor(model => model.Priority, new { @class = "checkbox", @type = "checkbox" })
+                                <span class="text"></span>
+                            </label>
+                            @Html.ValidationMessageFor(model => model.Priority)
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-12 padding-10">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Comment_status, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @*@Html.EditorFor(model => model.Comment_status)*@
+                            <label class="pull-right">
+                                @Html.EditorFor(model => model.Comment_status, new { @class = "checkbox", @type = "checkbox" })
+                                <span class="text"></span>
+                            </label>
+                            @Html.ValidationMessageFor(model => model.Comment_status)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 padding-10">
+                    <div class="widget collapsed">
+                        <div class="widget-header">
+                            <span class="widget-caption">تعیین تاریخ شروع و پایان برای خبر</span>
+                            <div class="widget-buttons">
+                                <a href="#" data-toggle="collapse">
+                                    <i class="fa fa-plus blue"></i>
+                                </a>
+                            </div><!--Widget Buttons-->
+                        </div><!--Widget Header-->
+                        <div class="widget-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="col-md-12 padding-10">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Startdate, new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.Startdate, new { htmlAttributes = new { @class = "form-control" } })
+                                                @Html.ValidationMessageFor(model => model.Startdate)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12 padding-10">
+                                        <div class="form-group">
+                                            @Html.LabelFor(model => model.Enddate, new { @class = "control-label col-md-2" })
+                                            <div class="col-md-10">
+                                                @Html.EditorFor(model => model.Enddate, new { @class = "form-control col-md-4" })
+                                                @Html.ValidationMessageFor(model => model.Enddate)
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!--Widget Body-->
+                    </div><!--Widget-->
+                </div>
+                <div class="col-md-12 padding-10">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ImageUrl, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ImageUrl)
+                            @Html.ValidationMessageFor(model => model.ImageUrl)
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-12 padding-10">
+                    <div id="buttons">
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-10">
+                            <br />
+                            <input type="submit" class="btn btn-success" value="ثبت" />
+                            @Html.ActionLink("بازگشت به فهرست", "Index", routeValues: null, htmlAttributes: new { @class = "btn btn-danger" })
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
