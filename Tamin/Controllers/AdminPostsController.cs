@@ -46,10 +46,7 @@ namespace Tamin.Controllers
 
             return View(posts.ToList());
         }
-
-
-
-
+        
         // GET: AdminPosts/Details/5
         public async Task<ActionResult> PostDetails(int? id)
         {
@@ -169,6 +166,19 @@ namespace Tamin.Controllers
             ViewBag.ApplicationUserId = new SelectList(db.Users, "Id", "Fullname", post.ApplicationUserId);
             ViewBag.PostGroupID = new SelectList(db.PostGroups, "PostGroupID", "PostGroupTitle", post.PostGroupID);
             return View(post);
+        }
+
+        [HttpPost]
+        public ActionResult Changestatus(int? id)
+        {
+            var original = db.Posts.Find(id);
+            if (original != null)
+            {
+                original.PostIsActive = !original.PostIsActive;
+                db.SaveChanges();
+                return Content("true");
+            }
+            return Content("false");
         }
 
         // GET: AdminPosts/Delete/5
