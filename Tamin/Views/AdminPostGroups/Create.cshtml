@@ -1,56 +1,76 @@
 ﻿@model Tamin.Models.PostGroup
-
 @{
     ViewBag.Title = "افزودن ";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 
-<section class="panel">
-    <header class="panel-heading">
-        افزودن گروه کالا
-    </header>
-    <div class="panel-body">
-        @using (Html.BeginForm("Create", "AdminPostGroups", FormMethod.Post, new { @id = "form_UploadFile", @enctype = "multipart/form-data" }))
-        {
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary(true)
-            <fieldset>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ParentId, "والد گروه خبر", new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.DropDownList("ParentId", "-- والد گروه خبر را انتخاب کنید --")
-                        @Html.ValidationMessageFor(model => model.ParentId)
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.PostGroupTitle, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.PostGroupTitle)
-                        @Html.ValidationMessageFor(model => model.PostGroupTitle)
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ImageUrl, new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.ImageUrl)
-                        @Html.ValidationMessageFor(model => model.ImageUrl)
-                    </div>
-                </div>
-
-                <div id="buttons">
-                    <div class="col-md-2">
-                    </div>
-                    <div class="col-md-10">
-                        <input type="submit" class="btn btn-primary" value="ثبت" />
-                        @Html.ActionLink("بازگشت به فهرست", "Index")
-                    </div>
-                </div>
-            </fieldset>
-
-        }
+<div class="widget">
+    <div class="widget-header">
+        <span class="widget-caption">ایجاد گروه خبر جدید</span>
     </div>
-</section>
+    <div class="widget-body">
+        <div class="row">
+            @using (Html.BeginForm("Create", "AdminPostGroups", FormMethod.Post, new { @id = "form_UploadFile", @enctype = "multipart/form-data" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="col-md-12 padding-10">
+                    <div class="form-group">
+                        @Html.ValidationSummary(true)
+                    </div>
+                </div>
+                <div class="col-md-12 padding-10">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ParentId, "والد گروه خبر", new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.DropDownList("ParentId", "-- والد گروه خبر را انتخاب کنيد --")
+                            @Html.ValidationMessageFor(model => model.ParentId)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 padding-10">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.PostGroupTitle, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                           @Html.TextBoxFor(model => model.PostGroupTitle, new { @type = "text", @class = "form-control col-md-3", @id = "definput", @placeholder = "عنوان گروه خبر را وارد کنید" })
+                        @Html.ValidationMessageFor(model => model.PostGroupTitle)
+                        </div>
+                    </div>
+                </div>
+                
+             
+                @*<div class="col-md-12 padding-10">
+                        <div class="form-group" style="display: none;">
+
+                            @Html.LabelFor(model => model.PostDate, new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.PostDate)
+                                @Html.ValidationMessageFor(model => model.PostDate)
+                            </div>
+                        </div>
+                    </div>*@
+          
+                <div class="col-md-12 padding-10">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ImageUrl, new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.ImageUrl)
+                            @Html.ValidationMessageFor(model => model.ImageUrl)
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 padding-10">
+                    <div id="buttons">
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-10">
+                            <br />
+                            <input type="submit" class="btn btn-success" value="ثبت" />
+                            @Html.ActionLink("بازگشت به فهرست", "Index", routeValues: null, htmlAttributes: new { @class = "btn btn-danger" })
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
