@@ -1,63 +1,73 @@
 ﻿@model Tamin.Models.ApplicationUser
-
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-
-<section class="panel">
-    <header class="panel-heading">
-        افزودن کاربر
-    </header>
-    <div class="panel-body">
-        @using (Html.BeginForm())
-        {
-            @Html.AntiForgeryToken()
-            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <fieldset>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Fullname, new { @class = "control-label col-md-2" })
-                    <div class="col-md-4">
-                        @Html.EditorFor(model => model.Fullname, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Fullname)
-                    </div>
-                </div>
-
-
-
-                <div class="form-group">
-                    @Html.Label("شماره تماس", new { @class = "control-label col-md-2" })
-                    <div class="col-md-4">
-                        @Html.EditorFor(model => model.PhoneNumber)
-                        @Html.ValidationMessageFor(model => model.PhoneNumber)
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.Label("آدرس ایمیل", new { @class = "control-label col-md-2" })
-                    <div class="col-md-4">
-                        @Html.EditorFor(model => model.Email, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.Email)
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.Label("پسورد", new { @class = "control-label col-md-2" })
-                    <div class="col-md-4">
-                        @Html.PasswordFor(model => model.PasswordHash)
-                        @Html.ValidationMessageFor(model => model.PasswordHash)
-                    </div>
-                </div>
-
-                <div id="buttons">
-                    <div class="col-md-2">
-                    </div>
-                    <div class="col-md-4">
-                        <input type="submit" class="btn btn-primary" value="ثبت" />
-                        @Html.ActionLink("بازگشت به فهرست", "Index")
-                    </div>
-                </div>
-            </fieldset>
-
-        }
+<div class="widget">
+    <div class="widget-header">
+        <span class="widget-caption">افزودن کاربر</span>
     </div>
-</section>
+    <div class="widget-body">
+        <div class="row">
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="col-md-12 padding-10">
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Fullname, new { @class = "control-label col-md-2" })
+                        
+                            @Html.TextBoxFor(model => model.Fullname, new { @type = "text", @class = "form-control col-md-3", @id = "definput", @placeholder = " نام و نام خانوادگی را وارد کنید" })
+                            @Html.ValidationMessageFor(model => model.Fullname)
+                        
+                    </div>
+                </div>
+
+                <div class="col-md-12 padding-10">
+                    <div class="form-group">
+                        @Html.Label("شماره تماس", new { @class = "control-label col-md-2" })
+                        
+                            @Html.TextBoxFor(model => model.PhoneNumber, new { @type = "text", @class = "form-control col-md-3", @id = "definput", @placeholder = "تلفن همراه را وارد کنید" })
+                            @Html.ValidationMessageFor(model => model.PhoneNumber)
+                        
+                    </div>
+                </div>
+
+                <div class="col-md-12 padding-10">
+                    <div class="form-group">
+                        @Html.Label("آدرس ایمیل", new { @class = "control-label col-md-2" })
+                        
+                            @Html.TextBoxFor(model => model.Email, new { @type = "text", @class = "form-control col-md-3", @id = "definput", @placeholder = "ایمیل را وارد کنید" })
+                            @Html.ValidationMessageFor(model => model.Email)
+                        
+                    </div>
+                </div>
+                
+                <div class="col-md-12 padding-10">
+                    <div class="form-group">
+                        @Html.Label("پسورد", new { @class = "control-label col-md-2" })
+                        
+                            @Html.PasswordFor(model => model.PasswordHash, new { @type = "password", @class = "form-control col-md-3", @name = "password"})
+                            @Html.ValidationMessageFor(model => model.PasswordHash)
+                        
+                    </div>
+                </div>
+                <div class="col-md-12 padding-10">
+                    <div id="buttons">
+                        <div class="col-md-2">
+                        </div>
+                        <div class="col-md-4">
+                            <input type="submit" class="btn btn-primary" value="ثبت" />
+                            @Html.ActionLink("بازگشت به فهرست", "Index", routeValues: null, htmlAttributes: new { @class = "btn btn-danger" })
+                        </div>
+                    </div>
+                </div>
+
+
+            }
+
+                </div>
+    </div>
+</div>
+         

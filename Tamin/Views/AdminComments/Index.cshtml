@@ -38,6 +38,9 @@
                     @Html.DisplayName("آدرس ایمیل")
                 </th>
                 <th>@Html.DisplayName("دستورات")</th>
+
+
+               
             </tr>
             </thead>
             <tbody>
@@ -60,7 +63,7 @@
                         </td>
 
                         <td>
-                            @Html.DisplayFor(modelItem => item.CommentIsActive)
+                            @*@Html.DisplayFor(modelItem => item.CommentIsActive)
                             @if (item.CommentIsActive == true)
                             {
                                 @:تایید
@@ -68,8 +71,17 @@
                             else
                             {
                                 @:انتظار
-                            }
+                            }*@
+
+                            <div class="col-xs-4">
+
+                                @*<label class="pull-right">*@
+                                @Html.CheckBoxFor(model => item.CommentIsActive, new { @class = "checkbox-slider slider-icon colored-blue", @type = "checkbox" })
+                                <span class="text"></span>
+                                @*</label>*@
+                            </div>
                         </td>
+
                         <td>
                             @Html.DisplayFor(modelItem => item.Comment_title)
                         </td>
@@ -83,6 +95,13 @@
 
                             @Html.ActionLink("حذف", "Delete", new { id = item.Comment_ID }, new { @class = "btn btn-danger btn-xs" })
 
+                           
+                               
+                                    
+                                   
+                                      
+                                       @Html.CheckBoxFor(modelItem => item.CommentIsActive)
+                                        
                             
                         </td>
                     </tr>

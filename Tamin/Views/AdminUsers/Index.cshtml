@@ -1,97 +1,91 @@
 ﻿
 @model IEnumerable<Tamin.Models.ApplicationUser>
 @using Tamin.Helpers
-
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-
-<section class="panel">
-    <header class="panel-heading">
-        فهرست کاربران
-        <span class="tools pull-left">
-            <a class="fa fa-chevron-down" href="javascript:;"></a>
-        </span>
-    </header>
-    <div class="panel-body">
-        <div class="adv-table editable-table">
-            <div class="clearfix">
-                <div class="btn-group">
-                    @Html.ActionLink("ایجاد", "Create", null, new { @class = "btn btn-success" })
+<div class="widget">
+    <div class="widget-header">
+        <span class="widget-caption">فهرست کاربران</span>
+    </div>
+    <div class="widget-body">
+        <div class="row padding-10">
+            <div class="adv-table editable-table">
+                <div class="clearfix">
+                    <div class="btn-group">
+                        @Html.ActionLink("ایجاد کاربر جدید", "Create", null, new { @class = "btn btn-success" })
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="space15"></div>
-        <table class="table editable-table table-hover table-bordered" id="editable-sample">
-            <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Fullname)
-                </th>
-
-                <th>
-                    @Html.DisplayNameFor(model => model.DateOfRegistration)
-                </th>
-                <th>
-                    @Html.DisplayName("آدرس ایمیل")
-                </th>
-                <th>
-                    @Html.DisplayName("شماره تلفن")
-                </th>
-                <th>
-                    @Html.DisplayName("نقش ها")
-                </th>
-                <th>@Html.DisplayName("دستورات")</th>
-            </tr>
-            </thead>
-            <tbody>
-            @if (Model.Count() == 0)
-            {
-                <tr><td colspan="8" class="text-center">هیچ داده ای جهت نمایش وجود ندارد</td></tr>
-            }
-            else
-            {
-                foreach (var item in Model)
-                {
-                    <tr class="">
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Fullname)
-                        </td>
-
-                        <td>
-                            @Html.DisplayFor(modelItem => item.DateOfRegistration)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Email)
-                        </td>
-
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PhoneNumber)
-                        </td>
-                        <td>
-                            @string.Join(",", item.Roles.Select(x => Html.GetRoleName(x.RoleId)))
-                                
-                        </td>
-
-                        <td>
-                            @using (Html.BeginForm("Delete", "AdminUsers", new { id = item.Id }))
-                            {
-                                @Html.ActionLink("ویرایش", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-xs" })
-                                <button class="btn btn-danger btn-xs" type="submit">
-                                    حذف
-                                </button>
-                            }
-                        </td>
+            <div class="col-md-12">
+                <br />
+            </div>
+            <table class="table editable-table table-hover table-bordered" id="editable-sample">
+                <thead>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Fullname)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.DateOfRegistration)
+                        </th>
+                        <th>
+                            @Html.DisplayName("آدرس ایمیل")
+                        </th>
+                        <th>
+                            @Html.DisplayName("شماره تلفن")
+                        </th>
+                        <th>
+                            @Html.DisplayName("نقش ها")
+                        </th>
+                        <th>@Html.DisplayName("دستورات")</th>
                     </tr>
-                }
-            }
-                
-            </tbody>
+                </thead>
+                <tbody>
+                    @if (Model.Count() == 0)
+            {
+                        <tr><td colspan="8" class="text-center">هیچ داده ای جهت نمایش وجود ندارد</td></tr>
+                    }
+                    else
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr class="">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Fullname)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.DateOfRegistration)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PhoneNumber)
+                                </td>
+                                <td>
+                                    @string.Join(",", item.Roles.Select(x => Html.GetRoleName(x.RoleId)))
 
+                                </td>
+                                <td>
+                                    @using (Html.BeginForm("Delete", "AdminUsers", new { id = item.Id }))
+                                    {
+                                        @Html.ActionLink("ویرایش", "Edit", new { id = item.Id }, new { @class = "btn btn-primary btn-xs" })
+                                        <button class="btn btn-danger btn-xs" type="submit">
+                                            حذف
+                                        </button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
 
+                </tbody>
 
-        </table>
+            </table>
+        </div>
     </div>
+</div>
 
-</section>
+        

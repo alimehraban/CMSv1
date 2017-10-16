@@ -6,7 +6,7 @@
 }
 <div class="widget">
     <div class="widget-header">
-        <span class="widget-caption">ایجاد خبر جدید</span>
+        <span class="widget-caption">ویرایش خبر</span>
     </div><!--Widget Header-->
     <div class="widget-body">
 
@@ -25,7 +25,8 @@
                     <div class="form-group">
                         @Html.LabelFor(model => model.PostTitle, new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
-                            @Html.EditorFor(model => model.PostTitle, new { @class = "form-control" })
+                            
+                            @Html.TextBoxFor(model => model.PostTitle, new { @type = "text", @class = "form-control col-md-4", @id = "definput" })
                             @Html.ValidationMessageFor(model => model.PostTitle)
                         </div>
                     </div>
@@ -72,10 +73,15 @@
                         @Html.LabelFor(model => model.PostIsActive, new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             @*@Html.EditorFor(model => model.PostIsActive)*@
-                            <label class="pull-right">
+                            @*<label class="pull-right">
                                 @Html.EditorFor(model => model.PostIsActive, new { @class = "checkbox", @type = "checkbox" })
                                 <span class="text"></span>
-                            </label>
+                            </label>*@
+
+                            <div class="col-xs-4">
+                                @Html.CheckBoxFor(model => model.PostIsActive, new { @class = "checkbox-slider slider-icon colored-blue", @type = "checkbox" })
+                                <span class="text"></span>
+                            </div>
                             @Html.ValidationMessageFor(model => model.PostIsActive)
                         </div>
                     </div>
@@ -85,10 +91,14 @@
                         @Html.LabelFor(model => model.Priority, new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             @*@Html.EditorFor(model => model.Priority)*@
-                            <label class="pull-right">
+                            @*<label class="pull-right">
                                 @Html.EditorFor(model => model.Priority, new { @class = "checkbox", @type = "checkbox" })
                                 <span class="text"></span>
-                            </label>
+                            </label>*@
+                            <div class="col-xs-4">
+                                @Html.CheckBoxFor(model => model.PostIsActive, new { @class = "checkbox-slider slider-icon colored-blue", @type = "checkbox" })
+                                <span class="text"></span>
+                            </div>
                             @Html.ValidationMessageFor(model => model.Priority)
                         </div>
                     </div>
@@ -99,10 +109,14 @@
                         @Html.LabelFor(model => model.Comment_status, new { @class = "control-label col-md-2" })
                         <div class="col-md-10">
                             @*@Html.EditorFor(model => model.Comment_status)*@
-                            <label class="pull-right">
+                            @*<label class="pull-right">
                                 @Html.EditorFor(model => model.Comment_status, new { @class = "checkbox", @type = "checkbox" })
                                 <span class="text"></span>
-                            </label>
+                            </label>*@
+                            <div class="col-xs-4">
+                                @Html.CheckBoxFor(model => model.PostIsActive, new { @class = "checkbox-slider slider-icon colored-blue", @type = "checkbox" })
+                                <span class="text"></span>
+                            </div>
                             @Html.ValidationMessageFor(model => model.Comment_status)
                         </div>
                     </div>

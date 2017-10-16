@@ -1,5 +1,8 @@
 ﻿@using System.Web.UI.WebControls.WebParts
 @model IEnumerable<Tamin.Models.Post>
+ 
+
+
 
 @{
     ViewBag.Title = "Index";
@@ -42,6 +45,7 @@
                     </th>
                     <th>
                         @Html.DisplayName("نمایش در سایت")
+                        
                     </th>
                     <th>
                         @Html.DisplayName("زمان آخرین ویرایش")
@@ -81,15 +85,22 @@
                             </td>
                             <td>
                                 
-                                @if (@item.PostIsActive)
+                                @*@if (@item.PostIsActive)
                                 {
                                     @:بله
                                 }
                                 else
                                 {
                                     @:خیر
-                                }
-                            </td>
+                                }*@
+                                <div class="col-xs-4">
+                                   
+                                    @*<label class="pull-right">*@
+                                    @Html.CheckBoxFor(model => item.PostIsActive, new { @class = "checkbox-slider slider-icon colored-blue", @type = "checkbox" })
+                                    <span class="text"></span>
+                                    @*</label>*@
+                                </div>
+</td>
                             <td>
                                 @Html.DisplayFor(modelItem => item.Modifiedat)
                             </td>
