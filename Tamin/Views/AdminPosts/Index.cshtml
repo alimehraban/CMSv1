@@ -8,7 +8,8 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-
+<script src="~/assets/js/jquery.min.js"></script>
+<script src="~/assets/js/toastr/toastr.js"></script>
 <div class="widget">
     <div class="widget-header">
         <span class="widget-caption">فهرست خبرها</span>
@@ -122,6 +123,10 @@
                 id: id
             },
             success: function (data) {
+                if (data === true)
+                    Notify('وضعیت نمایش مطلب با موفقیت تغییر یافت', 'top-right', '5000', 'success', 'fa-check', true);
+                else
+                    Notify('خطا در تغییر وضعیت نمایش مطلب ', 'top-right', '5000', 'danger', 'fa-ban', true);
             }
         });
     }

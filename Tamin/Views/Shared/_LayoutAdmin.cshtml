@@ -57,7 +57,7 @@
                                         }
                                     }
                                 @*<li>
-                                    <a href="~/TAdmin/Profile/changepassword.aspx">تغییر رمز ورود</a>
+                                    <a href="">تغییر رمز ورود</a>
                                 </li>*@
                                 <li class="theme-area">
                                     <ul class="colorpicker" id="skin-changer">
@@ -148,26 +148,12 @@
                         </li>
                     </ul>
                 </li>
-
                 <li>
                     <a href="@Url.Action("Index", "AdminContacts")">
                         <i class="menu-icon fa fa-phone"></i>
                         <span>تماس با ما</span>
                     </a>
                 </li>
-                <li>
-                    @{
-                        using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm"}))
-                        {
-                            @Html.AntiForgeryToken()
-                            <a class="btn" href="javascript:document.getElementById('logoutForm').submit()">
-                                <i class="btn-label fa fa-close"></i>خروج</a>
-                            
-                        }
-                    }
-                </li>            
-                
-
             </ul>
 
         </div>
@@ -189,7 +175,7 @@
                         <i class="fa fa-arrows-h"></i>
                     </a>
                     <a class="fullscreen" id="fullscreen-toggler" href="#">
-                        <i class="glyphicon glyphicon-fullscreen"></i>
+                        <i class="fa fa-close"></i>
                     </a>
                 </div>
             </div>
