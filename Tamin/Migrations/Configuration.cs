@@ -20,6 +20,8 @@
             ApplicationUserManager userMgr = new ApplicationUserManager(new UserStore<ApplicationUser>(context));
             ApplicationRoleManager roleMgr = new ApplicationRoleManager(new RoleStore<ApplicationRole>(context));
             string roleName = "administrator";
+            //string roleName = "administrator";
+
             string password = "123456789@a";
             string email = "admin@gmail.com";
             if (!roleMgr.RoleExists(roleName))
