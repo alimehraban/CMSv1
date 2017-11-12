@@ -1,68 +1,90 @@
 ﻿@model Tamin.Models.PostGroup
 @{
-    ViewBag.Title = "Edit";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+
+    //ViewBag.Title = "ADD";
+    //Layout = Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    //Layout = Layout = "~/Views/Shared/_LayoutAdmin - Copy.cshtml";
+    //modal - backdrop
+    Layout = null;
 }
-<div class="widget">
-    <div class="widget-header">
-        <span class="widget-caption">ویرایش گروه خبر</span>
-    </div><!--Widget Header-->
-    <div class="widget-body">
-        <div class="row">
-            @using (Html.BeginForm("Edit", "AdminPostGroups", FormMethod.Post, new { @id = "form_UploadFile", @enctype = "multipart/form-data" }))
-            {
-                @Html.AntiForgeryToken()
-                @Html.ValidationSummary(true)
-                <div class="col-md-12 padding-10">
-                    <div class="form-group">
-                        @Html.ValidationSummary(false, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                   
-                        @Html.HiddenFor(model => model.PostGroupId)
-                <div class="col-md-12 padding-10">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.ParentId, "والد گروه محصول", new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.DropDownList("ParentId", "-- والد گروه محصول را انتخاب کنید --")
-                            @Html.ValidationMessageFor(model => model.ParentId)
-                        </div>
-                    </div>
+@using (Ajax.BeginForm("Edit", "AdminPostGroups", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "div-record", OnSuccess = "$('.close').click()" }))
+
+{
+
+    @Html.HiddenFor(m => m.PostGroupId)
+
+    <div class="modal-body">
+
+        <div class="row form-group">
+
+            <div class="col-md-12">
+
+                <div class="input-group">
+
+                    <span class="input-group-addon"><i class="fa fa-user-plus"></i></span>
+
+                    @Html.TextBoxFor(m => m.PostGroupTitle, new { @class = "form-control", @placeholder = "Username" })
+
                 </div>
 
-                <div class="col-md-12 padding-10">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.PostGroupTitle, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.TextBoxFor(model => model.PostGroupTitle, new { @type = "text", @class = "form-control col-md-3", @id = "definput" })
-                            @Html.ValidationMessageFor(model => model.PostGroupTitle)
-                        </div>
+            </div>
+
+        </div>
+
+        @*<div class="row form-group">
+
+                <div class="col-md-12">
+
+                    <div class="input-group">
+
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+
+                        @Html.TextBoxFor(m => m.PostGroupTitle, new { @class = "form-control", @placeholder = "Age" })
+
                     </div>
+
                 </div>
 
-                <div class="col-md-12 padding-10">
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.ImageUrl, new { @class = "control-label col-md-2" })
-                        <div class="col-md-10">
-                            @Html.EditorFor(model => model.ImageUrl)
-                            @Html.ValidationMessageFor(model => model.ImageUrl)
-                        </div>
+            </div>
+
+            <div class="row form-group">
+
+                <div class="col-md-12">
+
+                    <div class="input-group">
+
+                        <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+
+                        @Html.TextBoxFor(m => m.PostGroupTitle, new { @class = "form-control", @placeholder = "State" })
+
                     </div>
-                </div>
-                <div class="col-md-12 padding-10">
-                    <div id="buttons">
-                        <div class="col-md-2">
-                        </div>
-                        <div class="col-md-10">
-                            <input type="submit" class="btn btn-primary" value="ثبت" />
-                            @Html.ActionLink("بازگشت به فهرست", "Index", routeValues: null, htmlAttributes: new { @class = "btn btn-danger" })
-                        </div>
-                    </div>
+
                 </div>
 
+            </div>
 
-            }
+            <div class="row form-group">
+
+                <div class="col-md-12">
+
+                    <div class="input-group">
+
+                        <span class="input-group-addon"><i class="fa fa-globe"></i></span>
+
+                        @Html.TextBoxFor(m => m.PostGroupTitle, new { @class = "form-control", @placeholder = "Country" })
+
+                    </div>
+
                 </div>
+
+            </div>*@
+
     </div>
-</div>
-        
+
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary" name="cmd"><i class="fa fa-check"></i>&nbsp;ذخیره</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;بستن</button>
+    </div>
+
+}
+

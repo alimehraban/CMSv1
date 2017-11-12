@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Net;
 using System.Web;
@@ -9,49 +12,42 @@ using System.IO;
 
 namespace Tamin.Controllers
 {
-    [Authorize]
+    //[Authorize]
 
     public class AdminPostGroupsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: AdminPostGroups
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
+
         {
             var postGroups = db.PostGroups.Include(p => p.Parent);
-            return View(await postGroups.ToListAsync());
+
+            return View(db.PostGroups.ToList());
+
         }
 
-        // GET: AdminPostGroups/Details/5
-        public async Task<ActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            PostGroup postGroup = await db.PostGroups.FindAsync(id);
-            if (postGroup == null)
-            {
-                return HttpNotFound();
-            }
-            return View(postGroup);
-        }
 
-        // GET: AdminPostGroups/Create
-        public ActionResult Create()
+
+        public ActionResult Add()
+
         {
             ViewBag.ParentId = new SelectList(db.PostGroups, "PostGroupID", "PostGroupTitle");
-            return View();
+            return PartialView();
+
         }
 
-        // POST: AdminPostGroups/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "PostGroupID,ParentId,PostGroupTitle,ImageUrl")] PostGroup postGroup, HttpPostedFileBase ImageUrl)
+
+        public ActionResult Add([Bind(Include = "PostGroupID,ParentId,PostGroupTitle,ImageUrl")] PostGroup postGroup, HttpPostedFileBase ImageUrl)
+
         {
+
             if (ModelState.IsValid)
+
             {
                 if (ImageUrl != null)
                 {
@@ -65,87 +61,61 @@ namespace Tamin.Controllers
                     postGroup.ImageUrl = newFilename;
                 }
                 db.PostGroups.Add(postGroup);
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
-            }
 
+                db.SaveChanges();
+
+            }
             ViewBag.ParentId = new SelectList(db.PostGroups, "PostGroupID", "PostGroupTitle", postGroup.ParentId);
-            return View(postGroup);
+            return PartialView("_Detail", db.PostGroups.ToList());
+
         }
 
-        // GET: AdminPostGroups/Edit/5
-        public async Task<ActionResult> Edit(int? id)
+
+
+        public ActionResult Edit(int id)
+
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            PostGroup postGroup = await db.PostGroups.FindAsync(id);
-            if (postGroup == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.ParentId = new SelectList(db.PostGroups, "PostGroupID", "PostGroupTitle", postGroup.ParentId);
-            return View(postGroup);
+
+            return PartialView(db.PostGroups.Find(id));
+
         }
 
-        // POST: AdminPostGroups/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "PostGroupID,ParentId,PostGroupTitle,ImageUrl")] PostGroup postGroup, HttpPostedFileBase ImageUrl)
+
+        public ActionResult Edit(PostGroup model, int id)
+
         {
+
             if (ModelState.IsValid)
+
             {
-                if (ImageUrl != null)
-                {
-                    var fileName = Path.GetFileName(ImageUrl.FileName);
-                    string newFilename = Guid.NewGuid().ToString()
-                                             .Replace("-", string.Empty) +
-                                         Path.GetExtension(fileName);
-                    newFilename = "/Uploads/PostGroups/" + newFilename;
-                    var physicalPath = Server.MapPath(newFilename);
-                    ImageUrl.SaveAs(physicalPath);
-                    if (System.IO.File.Exists(Server.MapPath("~/" + postGroup.ImageUrl)))
-                    {
-                        System.IO.File.Delete(Server.MapPath("~/" + postGroup.ImageUrl));
-                    }
-                    postGroup.ImageUrl = newFilename;
-                }
-                db.Entry(postGroup).State = EntityState.Modified;
-                await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+
+                db.Entry(model).State = System.Data.Entity.EntityState.Modified;
+
+                db.SaveChanges();
+
             }
-            ViewBag.ParentId = new SelectList(db.PostGroups, "PostGroupID", "PostGroupTitle", postGroup.ParentId);
-            return View(postGroup);
+
+            return PartialView("_Detail", db.PostGroups.ToList());
+
         }
 
-        // GET: AdminPostGroups/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+
+
+        public ActionResult Delete(int id)
+
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            PostGroup postGroup = await db.PostGroups.FindAsync(id);
-            if (postGroup == null)
-            {
-                return HttpNotFound();
-            }
-            return View(postGroup);
+
+            db.PostGroups.Remove(db.PostGroups.Find(id));
+
+            db.SaveChanges();
+
+            return PartialView("_Detail", db.PostGroups.ToList());
+
         }
 
-        // POST: AdminPostGroups/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
-        {
-            PostGroup postGroup = await db.PostGroups.FindAsync(id);
-            db.PostGroups.Remove(postGroup);
-            await db.SaveChangesAsync();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {

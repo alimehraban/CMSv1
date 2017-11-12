@@ -1373,10 +1373,6 @@
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Time.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Url.cshtml" />
-    <Content Include="Views\AdminPostGroups\Create.cshtml" />
-    <Content Include="Views\AdminPostGroups\Delete.cshtml" />
-    <Content Include="Views\AdminPostGroups\Details.cshtml" />
-    <Content Include="Views\AdminPostGroups\Edit.cshtml" />
     <Content Include="Views\AdminPostGroups\Index.cshtml" />
     <Content Include="Views\AdminPosts\Create.cshtml" />
     <Content Include="Views\AdminPosts\Delete.cshtml" />
@@ -1409,6 +1405,9 @@
     <Content Include="Views\AdminComments\Index.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\DateTimePicker3.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin - Copy.cshtml" />
+    <Content Include="Views\AdminPostGroups\Add.cshtml" />
+    <Content Include="Views\AdminPostGroups\Edit.cshtml" />
+    <Content Include="Views\AdminPostGroups\_Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

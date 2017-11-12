@@ -1,76 +1,97 @@
-﻿@using System.Web.UI.WebControls.WebParts
-@model IEnumerable<Tamin.Models.PostGroup>
-@{
+﻿@{
+
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    //Layout = Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    Layout = null;
 }
-<div class="widget">
-    <div class="widget-header">
-        <span class="widget-caption">فهرست مجموعه ها</span>
-    </div>
-    <div class="widget-body">
-        <div class="row padding-10">
-            <div class="adv-table editable-table">
-                <div class="clearfix">
-                    <div class="btn-group">
-                        @Html.ActionLink("ایجاد مطلب جدید", "Create", null, new { @class = "btn btn-success" })
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12">
-                <br />
-            </div>
-            <table class="table editable-table table-hover table-bordered" id="editable-sample">
-                <thead>
-                    <tr>
-                        <th>
-                            @Html.DisplayName("والد گروه خبر")
-                        </th>
-                        <th>
-                            @Html.DisplayName("عنوان گروه خبر")
-                        </th>
-                        <th>
-                            @Html.DisplayName("تصویر خبر")
-                        </th>
-                        <th>@Html.DisplayName("دستورات")</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (!Model.Any())
-            {
-                        <tr><td colspan="8" class="text-center">هیچ داده ای جهت نمایش وجود ندارد</td></tr>
-                    }
-                    else
-                    {
-                        foreach (var item in Model)
-                        {
-                            <tr class="">
 
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PostGroupTitle)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PostGroupTitle)
-                                </td>
-                                <td>
-                                    @if (!String.IsNullOrEmpty(@item.ImageUrl))
-                                    {
-                                        <img style="border-radius: 5px;" width="50" height="50" src="@Url.Content(@item.ImageUrl)" />
-                                    }
-                                </td>
-                              
-                                
-                                <td>
 
-                                    @Html.ActionLink("ویرایش", "Edit", new { id = item.PostGroupId }, new { @class = "btn btn-primary btn-xs" })
-                                    @Html.ActionLink("حذف", "Delete", new { id = item.PostGroupId }, new { @class = "btn btn-danger btn-xs" })
 
-                                </td>
-                            </tr>
-                        }
-                    }
-                </tbody>
-            </table>
+<link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+
+<link href="@Url.Content("~/Content/bootstrap-theme.min.css")" rel="stylesheet" />
+
+<link href="@Url.Content("~/Content/font-awesome.min.css")" rel="stylesheet" />
+
+<script src="@Url.Content("~/Scripts/jquery-2.1.1.min.js")"></script>
+
+<script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.min.js")"></script>
+
+<script src="@Url.Content("~/Scripts/bootstrap.min.js")"></script>
+
+
+
+<div id="main-div">
+
+    <div class="clearfix">&nbsp;</div>
+
+    <div class="clearfix">&nbsp;</div>
+
+    <div class="container">
+
+        <a href="@Url.Action("Add", "AdminPostGroups")" id="Add" class="btn btn-primary"><i class="glyphicon glyphicon-plus"></i>&nbsp;ایجاد گروه خبر</a>
+
+        <div id="div-record">
+
+            @Html.Partial("_Detail")
+
         </div>
+
     </div>
+
+
+
+
+
+    <div class="modal fade" id="Add-Model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                    <h4 class="modal-title">گروه خبر</h4>
+
+                </div>
+
+                <div class="divForAdd">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="modal fade" id="Edit-Model" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+                    <h4 class="modal-title">بروز رسانی</h4>
+
+                </div>
+
+                <div class="divForUpdate">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
 </div>
+
