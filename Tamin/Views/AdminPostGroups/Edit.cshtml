@@ -1,12 +1,5 @@
 ﻿@model Tamin.Models.PostGroup
-@{
 
-    //ViewBag.Title = "ADD";
-    //Layout = Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-    //Layout = Layout = "~/Views/Shared/_LayoutAdmin - Copy.cshtml";
-    //modal - backdrop
-    Layout = null;
-}
 @using (Ajax.BeginForm("Edit", "AdminPostGroups", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "div-record", OnSuccess = "$('.close').click()" }))
 
 {
@@ -31,53 +24,29 @@
 
         </div>
 
-        @*<div class="row form-group">
 
-                <div class="col-md-12">
+        <br />
 
-                    <div class="input-group">
+        <div class="row form-group">
 
-                        <span class="input-group-addon"><i class="glyphicon glyphicon-calendar"></i></span>
+            <div class="col-md-12">
 
-                        @Html.TextBoxFor(m => m.PostGroupTitle, new { @class = "form-control", @placeholder = "Age" })
+                <div class="input-group">
 
-                    </div>
 
-                </div>
 
-            </div>
-
-            <div class="row form-group">
-
-                <div class="col-md-12">
-
-                    <div class="input-group">
-
-                        <span class="input-group-addon"><i class="fa fa-globe"></i></span>
-
-                        @Html.TextBoxFor(m => m.PostGroupTitle, new { @class = "form-control", @placeholder = "State" })
+                    @Html.LabelFor(model => model.ImageUrl, new { @class = "control-label col-md-4 right" })
+                    <br />
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.ImageUrl)
+                        @Html.ValidationMessageFor(model => model.ImageUrl)
 
                     </div>
 
                 </div>
 
             </div>
-
-            <div class="row form-group">
-
-                <div class="col-md-12">
-
-                    <div class="input-group">
-
-                        <span class="input-group-addon"><i class="fa fa-globe"></i></span>
-
-                        @Html.TextBoxFor(m => m.PostGroupTitle, new { @class = "form-control", @placeholder = "Country" })
-
-                    </div>
-
-                </div>
-
-            </div>*@
+        </div>
 
     </div>
 
