@@ -68,8 +68,13 @@
 }
 @*@using (Html.BeginForm("Add", "AdminPostGroups", new { @id = "form_UploadFile", @enctype = "multipart/form-data" }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "div-record", OnSuccess = "$('.close').click()" }))*@
 @*@using (Html.BeginForm("Add", "AdminPostGroups", FormMethod.Post, new { @id = "form_UploadFile", @enctype = "multipart/form-data" }))*@
-@using (Ajax.BeginForm("Add", "AdminPostGroups", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "div-record", OnSuccess = "$('.close').click()" }))
-
+@*@using (Ajax.BeginForm("Add", "AdminPostGroups", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "div-record", OnSuccess = "$('.close').click()" }, new { @id = "form_UploadFile", @enctype = "multipart/form-data" }))*@
+@using (Ajax.BeginForm("Add", "AdminPostGroups", new AjaxOptions
+{
+    HttpMethod = "Post",
+    UpdateTargetId = "div-record",
+    OnSuccess = "$('.close').click()"
+}, new { @id = "form_UploadFile", @enctype = "multipart/form-data" }))
 
 {
 
@@ -144,4 +149,3 @@
     </div>
 
 }
-

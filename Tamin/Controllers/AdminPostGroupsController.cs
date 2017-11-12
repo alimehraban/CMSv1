@@ -12,7 +12,7 @@ using System.IO;
 
 namespace Tamin.Controllers
 {
-    //[Authorize]
+    [Authorize]
 
     public class AdminPostGroupsController : Controller
     {
